@@ -1,0 +1,12 @@
+PASS	Basic Statistics	FH29-BL_S10_R1_001.bam
+PASS	Per base sequence quality	FH29-BL_S10_R1_001.bam
+PASS	Per tile sequence quality	FH29-BL_S10_R1_001.bam
+PASS	Per sequence quality scores	FH29-BL_S10_R1_001.bam
+FAIL	Per base sequence content	FH29-BL_S10_R1_001.bam
+PASS	Per sequence GC content	FH29-BL_S10_R1_001.bam
+PASS	Per base N content	FH29-BL_S10_R1_001.bam
+WARN	Sequence Length Distribution	FH29-BL_S10_R1_001.bam
+PASS	Sequence Duplication Levels	FH29-BL_S10_R1_001.bam
+PASS	Overrepresented sequences	FH29-BL_S10_R1_001.bam
+PASS	Adapter Content	FH29-BL_S10_R1_001.bam
+FAIL	Kmer Content	FH29-BL_S10_R1_001.bam

@@ -1,0 +1,12 @@
+PASS	Basic Statistics	GK45-PG_S12_R1_001.bam
+PASS	Per base sequence quality	GK45-PG_S12_R1_001.bam
+PASS	Per tile sequence quality	GK45-PG_S12_R1_001.bam
+PASS	Per sequence quality scores	GK45-PG_S12_R1_001.bam
+FAIL	Per base sequence content	GK45-PG_S12_R1_001.bam
+PASS	Per sequence GC content	GK45-PG_S12_R1_001.bam
+PASS	Per base N content	GK45-PG_S12_R1_001.bam
+WARN	Sequence Length Distribution	GK45-PG_S12_R1_001.bam
+PASS	Sequence Duplication Levels	GK45-PG_S12_R1_001.bam
+PASS	Overrepresented sequences	GK45-PG_S12_R1_001.bam
+PASS	Adapter Content	GK45-PG_S12_R1_001.bam
+FAIL	Kmer Content	GK45-PG_S12_R1_001.bam

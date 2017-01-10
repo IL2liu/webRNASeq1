@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% block css %}
+
+{% endblock css%}
+{% block js %}
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    $('#newProjectsTable').DataTable();
+  } );
+  
+  <!--function submitDataFileForm(obj){-->
+      <!--objId = obj.id;-->
+
+      <!--data = objId.split("-");-->
+
+      <!--if (data.length > 0){-->
+
+         <!--dataFileId = data[1];-->
+
+      <!--}-->
+
+    <!--$("#dataFileId").val(dataFileId);-->
+
+    <!--$("#dataFileForm").submit();-->
+  <!--}-->
+
+  function validateForm(){
+  
+  projectChecked = false;
+  
+  {% for newProjectObj in newProjectObjList %}
+  
+    if ( $('#newProjectSelect-{{forloop.counter0}}').is(':checked') && $('#userId-{{forloop.counter0}}' ).val() == "" )
+    {
+      alert("Please select a dropdown element if you have checked a checkbox.")
+      return false;
+    }
+
+    if (!$('#newProjectSelect-{{forloop.counter0}}').is(':checked') && $('#userId-{{forloop.counter0}}').val() != "" )
+    {
+      alert("Please check the related checkbox if you have selected a value from the dropdown.")
+      return false;
+    }    
+  
+    if ( $('#projectName-{{forloop.counter0}}').val() == '' ){  
+    
+      alert("Please enter project name.")
+      return false;
+    
+    }
+    
+    if ( $('#newProjectSelect-{{forloop.counter0}}').is(':checked') ) 
+    
+    {
+      projectChecked = true;
+    }
+  {% endfor %}  
+  
+    if (!projectChecked)
+    {
+      alert("You need to select at least one project.");
+      return false;
+    }
+  
+    return true;
+
+  }
+
+</script>
+
+{% endblock js %}
+
+{% block content %}
+
+<!-- /.row -->
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Import projects</h1>
+    <p>Import projects and assign them to users.</p>  
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<form method = "post" id="displayNewProjectsForm" name="displayNewProjectsForm" action="/rnaseq/submitAddNewProject/" onsubmit="return validateForm();" >
+ {% csrf_token %} 
+ <input type="hidden" value="{{project.id}}" name="projectId" id ="projectId"/> 
+ 
+{% for newProjectObj in newProjectObjList %}
+   <input type="hidden" name="newProject" id="newProject-{{forloop.counter0}}" value="{{newProjectObj.projectName}}"/>	
+{% endfor%}
+ <div class="row">  
+
+  <!-- panel for sites -->  
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+      	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#newProjectsPanel">
+	      Import Project. (Click to toggle this panel.)
+	    </a>
+	  </h4>  
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" style="overflow-y:auto;height:300px;" -webkit-scrollbar>
+       <div id="newProjectsPanel" class="panel-collapse collapse in" >      
+        <div class="table-responsive" >
+	  <p>New projects available for import are shown below. If you would like to import one of hte projects below, please click the corresponding checkbox and also assign an user to the project.</p>
+	  <table id="newProjectsTable" name="newProjectsTable" class="display" cellspacing="0" width="100%" >	  
+	   <thead>
+	      <tr >
+                <th>Select</th>
+                <th>New Project Name</th>
+                <th>Project File Name</th>
+                <th>md5 CheckSum Match</th>
+                <th>Assign User</th>
+              </tr>
+           </thead>
+           <tbody>
+           {% for newProjectObj in newProjectObjList %}
+	   
+             <tr>
+               <td><input type = "checkbox" name = "newProjectSelect" id = "newProjectSelect-{{forloop.counter0}}" value = "{{forloop.counter0}}" {% if not newProjectObj.m5ChkSumValueFlag %}disabled{% endif %} /></td>
+               <td><input type = "text" name = "projectName" id = "projectName-{{forloop.counter0}}" value = "{{newProjectObj.projectName}}" /></td>
+
+               <td>{{newProjectObj.projectName}}</td>
+
+               <td>{% if not newProjectObj.m5ChkSumValueFlag %}<font color="red">{% endif %}{{newProjectObj.m5ChkSumValueText}}{% if not newProjectObj.m5ChkSumValueFlag %}</font>{% endif %}</td>
+                <td>
+	          <select id = "userId-{{forloop.counter0}}" name = "userId">
+	           <option id = "userIdOption-default" value = ""> -- Select User -- </option>
+		   {% for projectUser in users %}
+		      <option id = "userIdOption-{{projectUser.username}}" name = "userIdOption" value = "{{projectUser.id}}">{{projectUser.username}}</option>
+		   {% endfor %}
+		  </select>		   
+	        </td>
+             </tr>
+           {% endfor %}
+           </tbody>
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+       </div>
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /. row -->
+ 
+<p class="text-center">
+   <button type="submit" class="btn btn-primary btn-lg" value = "0" name = "submitAssignProjectButton" id="submitAssignProjectButton" >Import Project</button>
+</p>
+ 
+</form>
+{% endblock content %}

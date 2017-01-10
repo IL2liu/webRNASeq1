@@ -1,0 +1,12 @@
+PASS	Basic Statistics	GI57-PG_S9_R1_001.bam
+PASS	Per base sequence quality	GI57-PG_S9_R1_001.bam
+PASS	Per tile sequence quality	GI57-PG_S9_R1_001.bam
+PASS	Per sequence quality scores	GI57-PG_S9_R1_001.bam
+FAIL	Per base sequence content	GI57-PG_S9_R1_001.bam
+WARN	Per sequence GC content	GI57-PG_S9_R1_001.bam
+PASS	Per base N content	GI57-PG_S9_R1_001.bam
+WARN	Sequence Length Distribution	GI57-PG_S9_R1_001.bam
+PASS	Sequence Duplication Levels	GI57-PG_S9_R1_001.bam
+PASS	Overrepresented sequences	GI57-PG_S9_R1_001.bam
+PASS	Adapter Content	GI57-PG_S9_R1_001.bam
+FAIL	Kmer Content	GI57-PG_S9_R1_001.bam

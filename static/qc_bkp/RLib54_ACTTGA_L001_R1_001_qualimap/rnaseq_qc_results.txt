@@ -1,0 +1,53 @@
+RNA-Seq QC report
+-----------------------------------
+
+>>>>>>> Input
+
+    bam file = RLib54_ACTTGA_L001_R1_001.bam
+    gff file = /data2/mharrigan/bcbio_nextgen/genomes/Hsapiens/GRCh37/rnaseq/ref-transcripts.gtf
+    counting algorithm = proportional
+    protocol = strand-specific-reverse
+
+
+>>>>>>> Reads alignment
+
+    reads aligned  = 22,269,277
+    total alignments = 29,446,059
+    secondary alignments = 7,176,782
+    non-unique alignments = 0
+    aligned to genes  = 19,793,432
+    ambiguous alignments = 565,288
+    no feature assigned = 3,380,735
+    not aligned = 368,707
+
+
+>>>>>>> Reads genomic origin
+
+    exonic =  19,793,432 (85.41%)
+    intronic = 2,089,681 (9.02%)
+    intergenic = 1,291,054 (5.57%)
+    overlapping exon = 925,697 (3.99%)
+
+
+>>>>>>> Transcript coverage profile
+
+    5' bias = 0.27
+    3' bias = 0.53
+    5'-3' bias = 0.58
+
+
+>>>>>>> Junction analysis
+
+    reads at junctions = 3,998,096
+
+    ACCT : 5.85%
+    AGGT : 5.11%
+    AGGA : 4.03%
+    TCCT : 3.76%
+    ATCT : 3.76%
+    AGCT : 3.25%
+    AGGG : 2.79%
+    GCCT : 2.63%
+    AGGC : 2.46%
+    AGAT : 2.16%
+    CCCT : 1.91%

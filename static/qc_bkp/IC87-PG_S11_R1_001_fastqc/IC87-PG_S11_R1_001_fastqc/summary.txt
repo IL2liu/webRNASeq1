@@ -1,0 +1,12 @@
+PASS	Basic Statistics	IC87-PG_S11_R1_001.bam
+PASS	Per base sequence quality	IC87-PG_S11_R1_001.bam
+PASS	Per tile sequence quality	IC87-PG_S11_R1_001.bam
+PASS	Per sequence quality scores	IC87-PG_S11_R1_001.bam
+FAIL	Per base sequence content	IC87-PG_S11_R1_001.bam
+PASS	Per sequence GC content	IC87-PG_S11_R1_001.bam
+PASS	Per base N content	IC87-PG_S11_R1_001.bam
+WARN	Sequence Length Distribution	IC87-PG_S11_R1_001.bam
+PASS	Sequence Duplication Levels	IC87-PG_S11_R1_001.bam
+PASS	Overrepresented sequences	IC87-PG_S11_R1_001.bam
+PASS	Adapter Content	IC87-PG_S11_R1_001.bam
+FAIL	Kmer Content	IC87-PG_S11_R1_001.bam

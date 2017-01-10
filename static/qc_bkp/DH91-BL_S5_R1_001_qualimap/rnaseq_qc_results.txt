@@ -1,0 +1,53 @@
+RNA-Seq QC report
+-----------------------------------
+
+>>>>>>> Input
+
+    bam file = DH91-BL_S5_R1_001.bam
+    gff file = /data2/mharrigan/Mmulatta/index_unmasked/Macaca_mulatta.MMUL_1.82.gtf
+    counting algorithm = proportional
+    protocol = strand-specific-reverse
+
+
+>>>>>>> Reads alignment
+
+    reads aligned  = 33,995,298
+    total alignments = 37,684,039
+    secondary alignments = 3,688,741
+    non-unique alignments = 0
+    aligned to genes  = 21,031,717
+    ambiguous alignments = 136
+    no feature assigned = 14,855,639
+    not aligned = 3,639,423
+
+
+>>>>>>> Reads genomic origin
+
+    exonic =  21,031,717 (58.6%)
+    intronic = 5,981,370 (16.67%)
+    intergenic = 8,874,269 (24.73%)
+    overlapping exon = 1,814,633 (5.06%)
+
+
+>>>>>>> Transcript coverage profile
+
+    5' bias = 0.57
+    3' bias = 0.6
+    5'-3' bias = 0.95
+
+
+>>>>>>> Junction analysis
+
+    reads at junctions = 6,379,998
+
+    TCCT : 6.76%
+    ACCT : 5.47%
+    AGGT : 5.27%
+    ATCT : 4.06%
+    AGGA : 3.59%
+    GCCT : 3.07%
+    AGAA : 2.72%
+    AGCT : 2.39%
+    AGGC : 2.03%
+    AGAT : 1.86%
+    TACT : 1.86%

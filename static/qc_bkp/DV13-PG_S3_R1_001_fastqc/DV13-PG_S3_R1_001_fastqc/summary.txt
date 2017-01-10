@@ -1,0 +1,12 @@
+PASS	Basic Statistics	DV13-PG_S3_R1_001.bam
+PASS	Per base sequence quality	DV13-PG_S3_R1_001.bam
+PASS	Per tile sequence quality	DV13-PG_S3_R1_001.bam
+PASS	Per sequence quality scores	DV13-PG_S3_R1_001.bam
+FAIL	Per base sequence content	DV13-PG_S3_R1_001.bam
+PASS	Per sequence GC content	DV13-PG_S3_R1_001.bam
+PASS	Per base N content	DV13-PG_S3_R1_001.bam
+WARN	Sequence Length Distribution	DV13-PG_S3_R1_001.bam
+PASS	Sequence Duplication Levels	DV13-PG_S3_R1_001.bam
+PASS	Overrepresented sequences	DV13-PG_S3_R1_001.bam
+PASS	Adapter Content	DV13-PG_S3_R1_001.bam
+FAIL	Kmer Content	DV13-PG_S3_R1_001.bam

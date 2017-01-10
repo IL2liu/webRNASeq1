@@ -1,0 +1,5 @@
+Library_number,Cell_line,Species,Transgene
+RLib53,THP1,Human,pMY56 (Control)
+RLib54,THP1,Human,pMY56 (Control)
+RLib55,THP1,Human,pMY239 (SPT5 KD)
+RLib56,THP1,Human,pMY239 (SPT5 KD)

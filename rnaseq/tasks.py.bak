@@ -1,0 +1,145 @@
+import csv
+import numpy
+from numpy import *
+import scipy
+import math
+from scipy import *
+from math import *
+
+import sys, traceback
+from rnaseq.models import *
+
+import subprocess, datetime, time
+from subprocess import Popen
+
+import re, os
+
+import rpy2.robjects as robjects 
+from rpy2.robjects import r
+from rpy2.robjects.packages import importr 
+
+import sys, traceback
+
+import pymongo
+from pymongo import MongoClient
+
+from celery import Celery
+from tasks import add
+
+from rnaseq.rnaseqObjs import *
+from rnaseq.rnaseqConstants import *
+
+import zipfile
+import datetime
+
+from django.conf import settings
+
+app = Celery('tasks', broker='amqp://guest@localhost//')
+
+@app.task
+def submitLimma(filePath, basePlotPath, outputPath, factors, factorColumns, factorColumnValues, factorColumnValueSet,samples, sampleNames, animals, contrasts, submittedJob):
+     
+    contrast = []
+    
+    try:    
+	
+	print " in task - before calling R !!!! "
+
+	startJobStatusCode = JobStatusCode.objects.all().filter(code="START")[0]
+	endJobStatusCode = JobStatusCode.objects.all().filter(code="END")[0]	
+
+	submittedJob.jobStatusCode = startJobStatusCode
+
+	submittedJob.save()
+
+	MAT_FN = robjects.r("source('" + settings.PROJECT_BASE_FOLDER + "/limma_analysis.R'); contrasts_matrix")
+    
+	contrast = MAT_FN(filePath, basePlotPath, outputPath, robjects.StrVector(factors), robjects.StrVector(factorColumns),robjects.StrVector(factorColumnValues), robjects.StrVector(factorColumnValueSet),robjects.StrVector(samples), robjects.StrVector(sampleNames), robjects.StrVector(animals), robjects.StrVector(contrasts))
+	
+	submittedJob.completedTime = datetime.datetime.now()
+	submittedJob.jobStatusCode = endJobStatusCode
+	submittedJob.save()	
+
+	print " &&&&&&&& in task - after calling R "
+
+    except:
+	
+	traceback.print_exc(file=sys.stdout)
+    
+    return 
+
+@app.task
+def checkNewProject():
+    
+    try:    
+
+	while True:
+	    # Wait for 5 seconds
+	    time.sleep(5)
+
+	    #listFiles = os.listdir(settings.INPUT_DATA_FOLDER)
+	    
+	    #zipFileName = ''
+	    
+	    #chkSumFileName = ''
+	    
+	    #for listFile in listFiles:
+		
+		#if listFile.endswith(".zip"):
+	
+		    #zipFileName = listFile
+		   
+		#elif listFile.endswith(".txt"):
+		    
+		    #chkSumFileName = listFile
+		    
+	    #if zipFileName != '':
+		    
+		#projects = Project.objects.filter(autoLoadedFromPath = settings.INPUT_DATA_FOLDER + "/" + zipFileName)
+		    
+		## create project if it does not exist
+		
+		#if len(projects) == 0:
+
+		    #project = Project ( name = listFile,  autoLoaded = True, autoLoadedFromPath = settings.INPUT_DATA_FOLDER + "/" + zipFileName, autoLoadedDate = datetime.datetime.now() )
+		    
+		    #project.save()
+		    
+		    ## get chksum and byte info 
+		    
+		    #if chkSumFileName != '':
+		    
+			#chkSumFile = open (settings.INPUT_DATA_FOLDER + "/" + chkSumFileName ,  "r")
+			
+			#chkSumData = []
+			
+			#for line in chkSumFile:
+			    
+			    #chkSumData = line.split(" ")
+			    
+			    #chkSumValue = chkSumData[0]
+			    #numBytes = chkSumData[1]
+			    #fileName = chkSumData[2]
+			    
+			    #break
+			
+			#if zfile.chkSumValue != chkSumData :
+
+			    #print " check sums do not match "
+			    
+			    #break
+
+			#zfile = zipfile.ZipFile(settings.INPUT_DATA_FOLDER + "/" + listFile)	
+	    
+			#zfile.extractall(settings.DATA_FOLDER + "/Project_" + project.id + "/" )
+			#zfile.close()			    
+
+    except:
+	
+	traceback.print_exc(file=sys.stdout)
+    
+    return 
+
+        
+            
+    

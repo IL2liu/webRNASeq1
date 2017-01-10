@@ -1,0 +1,12 @@
+PASS	Basic Statistics	FF66-BL_S4_R1_001.bam
+PASS	Per base sequence quality	FF66-BL_S4_R1_001.bam
+PASS	Per tile sequence quality	FF66-BL_S4_R1_001.bam
+PASS	Per sequence quality scores	FF66-BL_S4_R1_001.bam
+FAIL	Per base sequence content	FF66-BL_S4_R1_001.bam
+PASS	Per sequence GC content	FF66-BL_S4_R1_001.bam
+PASS	Per base N content	FF66-BL_S4_R1_001.bam
+WARN	Sequence Length Distribution	FF66-BL_S4_R1_001.bam
+PASS	Sequence Duplication Levels	FF66-BL_S4_R1_001.bam
+PASS	Overrepresented sequences	FF66-BL_S4_R1_001.bam
+PASS	Adapter Content	FF66-BL_S4_R1_001.bam
+FAIL	Kmer Content	FF66-BL_S4_R1_001.bam

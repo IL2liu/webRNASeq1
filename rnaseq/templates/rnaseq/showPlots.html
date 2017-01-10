@@ -1,0 +1,442 @@
+{% extends "base.html" %}
+{% block css %}
+<!--<link rel="stylesheet" type="text/css" href="/static/css/default.css">-->
+<!-- <link rel="stylesheet" type="text/css" href="/static/css/nouislider.css"> -->
+<!-- div.demo { padding: 10px !important; }; -->
+{% endblock css%}
+{% block js %}
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+  
+    $('#factorsTable').DataTable({paging:false}); 
+    
+    $('#designMatrixTable').DataTable({paging:false});
+
+    $('#contrastMatrixTable').DataTable({paging:false});
+
+    $('#contrastMatchTable').DataTable({paging:false});
+    
+  });
+    
+  function downloadNormalizedData(obj){
+      
+    $("#analyzeFileResultsForm").attr("action","/rnaseq/downloadNormalizedData/");	      
+      
+    $("#analyzeFileResultsForm").submit();
+  } 
+
+  function downloadImage(obj){
+
+    objId = obj.id;
+    
+    data = objId.split("-");
+    
+    if ( data.length > 0 ){
+
+      $("#imageType").val(data[1]);	      
+
+      $("#imageLabel").val(data[2]);	      
+	
+      $("#analyzeFileResultsForm").attr("action","/rnaseq/downloadImage/");	      
+	
+      $("#analyzeFileResultsForm").submit();
+    
+    }
+  } 
+
+  function submitAnalyzeFileForm(obj){
+
+    $("#analyzeFileSelectFactorsForm").submit();
+  }
+  
+  $(function() {
+   $( "#plotTabs" ).tabs();
+  });  
+  
+  var analysisNames = [{% for analysisDetail in analysisDetails %}"{{analysisDetail.name}}",{% endfor %}]
+
+  function submitAnalysis(){
+  
+    if ($.inArray($('#analysisDetailName').val(),  analysisNames) > -1 ) {
+    
+      alert("Analysis name already exists for this project. Please choose another name.");
+      
+      return false;
+    
+    }
+    
+    $("#showPlotsForm").submit();
+
+    return true;
+
+  }  
+
+</script>
+
+{% endblock js %}
+
+{% block content %}
+<form method = "post" id="showPlotsForm" name="showPlotsForm" action="/rnaseq/analyzeFileSubmit/">
+    {% csrf_token %} 
+ <input type="hidden" value="{{datafile.id}}" name="dataFileId" id ="dataFileId"/> 
+ <input type="hidden" value="{{phenotypeFile.id}}" name="phenotypeFileId" id ="phenotypeFileId"/> 
+
+{% for baseline in baselines %} 
+ <input type="hidden" value="{{baseline}}" name="baseline" id ="baseline"/> 
+{% endfor %}
+  
+{% for phenotypeColumn in phenotypeColumns %} 
+ <input type="hidden" value="{{phenotypeColumn}}" name="phenotypeColumn" id ="phenotypeColumn"/> 
+{% endfor %}
+
+{% for columnTypeId in columnTypeIds %} 
+ <input type="hidden" value="{{columnTypeId}}" name="columnTypeId" id ="columnTypeId"/> 
+{% endfor %}
+
+{% for contrasts in contrasts %} 
+ <input type="hidden" value="{{contrasts}}" name="contrastString" id ="contrastString"/> 
+{% endfor %}
+
+{% for singleFirstContrast in singleFirstContrasts %} 
+ <input type="hidden" value="{{singleFirstContrast}}" name="singleFirstContrast" id ="singleFirstContrast"/> 
+{% endfor %}
+
+{% for singleSecondContrast in singleSecondContrasts %} 
+ <input type="hidden" value="{{singleSecondContrast}}" name="singleSecondContrast" id ="singleSecondContrast"/> 
+{% endfor %}
+
+{% for doubleFirstContrast in doubleFirstContrasts %} 
+ <input type="hidden" value="{{doubleFirstContrast}}" name="doubleFirstContrast" id ="doubleFirstContrast"/> 
+{% endfor %}
+
+{% for doubleSecondContrast in doubleSecondContrasts %} 
+ <input type="hidden" value="{{doubleSecondContrast}}" name="doubleSecondContrast" id ="doubleSecondContrast"/> 
+{% endfor %}
+
+<!-- design matrix -->
+ <div class="row">  
+  <!-- panel for sites -->  
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+      	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#plotsPanel">
+	      Plots. (Click to toggle this panel.)
+	    </a>
+	  </h4>  
+      </div>
+      <div id="plotsPanel" class="panel-collapse collapse in" style="height:350px;overflow-y:auto;"  -webkit-scrollbar>
+	  <div class="panel-body">
+	      <div id="plotTabs">
+		<ul>
+		{% for plotObj in plotObjList %}
+
+		  <li><a href="#plotTab-{{forloop.counter0}}">{{plotObj.plotType}} plot {{plotObj.plotLabel}}</a></li>
+
+		{% endfor %}
+
+		</ul>
+		{% for plotObj in plotObjList %}
+
+		  <div id="plotTab-{{forloop.counter0}}">
+		    
+		    <p>
+		      <img src = "/static/img/{{plotObj.plotPath}}.png" width="550px" height="300px"/> 
+		    </p>
+		    <!--<p class="text-center">-->
+		       <!--<button type="submit" class="btn btn-primary btn-lg" value = "0" name = "downloadImageButton" id="downloadImageButton" onclick = "javascript:downloadImage(this)";>Download Image</button>-->
+		    <!--</p>-->
+		  </div>
+
+		{% endfor %}
+		
+	      </div>
+
+	 </div>
+      </div>
+    <!-- end up panel -->
+   </div>      
+  <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /. row -->   
+
+<!-- factors -->
+ <div class="row">  
+  <!-- panel for sites -->  
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+      	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#factorsPanel">
+	      Factors. (Click to toggle this panel.)
+	    </a>
+	  </h4>  
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" style="overflow-y:auto;height:200px;" -webkit-scrollbar>
+       <div id="factorsPanel" class="panel-collapse collapse in" >      
+        <div class="table-responsive" >
+	  <table id="factorsTable" name="factorsTable" class="display" cellspacing="0" width="100%" >	  
+	    <thead>
+	      <tr>
+		<th>Factors</th>
+	       <th>Values</th>
+	       <th>Baseline</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      {% for designFactorObj in designFactorObjList %}
+	       <tr class="{% cycle 'odd gradeX' 'even gradeC' %}" >				   
+		 <td>
+		   {{designFactorObj.designFactorName}}
+		 </td>
+		 <td>
+		   {{designFactorObj.designFactorValues}}
+		 </td>			
+		 <td>
+		   {{designFactorObj.designFactorBaseline}}
+		 </td>			
+	       </tr>				   
+	      {% endfor %}
+	    </tbody>
+	  </table>		    	  
+        </div>
+        <!-- /.table-responsive -->
+       </div>
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /. row -->
+ 
+<!-- design matrix -->
+ <div class="row">  
+  <!-- panel for sites -->  
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+      	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#designMatrixPanel">
+	      Design Matrix. (Click to toggle this panel.)
+	    </a>
+	  </h4>  
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" style="overflow-y:auto;height:300px;" -webkit-scrollbar>
+       <div id="designMatrixPanel" class="panel-collapse collapse in" >      
+        <div class="table-responsive" >
+	  <table id="designMatrixTable" name="designMatrixTable" class="display" cellspacing="0" width="100%" >	  
+	   <thead>
+	      <tr >
+		{% for matrixColumn in matrixColumns %}		
+		   <th>{{matrixColumn}}</th>
+		{% endfor %}
+              </tr>
+           </thead>
+           <tbody>
+           {% for designMatrixRow in designMatrix %}
+             <tr>
+		{% for designMatrixColumnValue in designMatrixRow %}		
+		   <th>{{designMatrixColumnValue}}</th>
+		{% endfor %}		      
+             </tr>
+           {% endfor %}
+           </tbody>
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+       </div>
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /. row -->
+
+<!-- contrast matrix -->
+ <div class="row">  
+  <!-- panel for sites -->  
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+      	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#contrastMatrixPanel">
+	      Contrast Matrix. (Click to toggle this panel.)
+	    </a>
+	  </h4>  
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" style="overflow-y:auto;height:300px;" -webkit-scrollbar>
+       <div id="contrastMatrixPanel" class="panel-collapse collapse in" >      
+        <div class="table-responsive" >
+	  
+	  <table id="contrastMatrixTable" name="contrastMatrixTable" class="display" cellspacing="0" width="100%" >	  
+	   <thead>
+	      <tr >
+	        <th>Level</th>
+		{% for matrixColumn in contrastMatrixColumns %}		
+		   <th>{{matrixColumn}}</th>
+		{% endfor %}
+              </tr>
+           </thead>
+           <tbody>
+           {% for contrastMatrixRowObj in contrastMatrixRowObjList %}
+             <tr>
+		<td>
+		   {{contrastMatrixRowObj.contrastLevel}}
+		</td>
+		{% for contrastMatrixColumnValue in contrastMatrixRowObj.contrastMatrixRow %}		
+		   <td>{{contrastMatrixColumnValue}}</td>
+		{% endfor %}		      
+             </tr>
+           {% endfor %}
+           </tbody>
+          </table>	  
+
+        </div>
+        <!-- /.table-responsive -->
+       </div>
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /. row -->
+
+<!-- design matrix -->
+ <div class="row">  
+  <!-- panel for sites -->  
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+      	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#columnMatchPanel">
+	      Matching columns of contrast matrix and sample names. (Click to toggle this panel.)
+	    </a>
+	  </h4>  
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" style="overflow-y:auto;height:300px;" -webkit-scrollbar>
+       <div id="columnMatchPanel" class="panel-collapse collapse in" >      
+        <div class="table-responsive" >
+
+	  <table id="contrastMatchTable" name="contrastMatchTable" class="display" cellspacing="0" width="100%" >	  
+	   <thead>
+	      <tr >
+		<th>Contrast Column</th>
+		<th>Sample Name</th>
+              </tr>
+           </thead>
+           <tbody>
+           {% for matrixColumnMatchObj in matrixColumnMatchObjList %}
+             <tr>
+	       <td>
+		<input type = "hidden" id = "sampleName-{{forloop.counter0}}" name = "sampleName-{{forloop.counter0}}" value = "{{matrixColumnMatchObj.selectedSampleName}}"/>
+		{{matrixColumnMatchObj.selectedSampleName}}
+	       </td>
+	       <td>
+	        <input type = "hidden" id = "dataMatrixColumn-{{forloop.counter0}}" name = "dataMatrixColumn-{{forloop.counter0}}" value = "{{matrixColumnMatchObj.selectedMatrixColumn}}"/>
+		{{matrixColumnMatchObj.selectedMatrixColumn}}
+	       </td>
+             </tr>
+           {% endfor %}
+           </tbody>
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+       </div>
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  <!--</div>-->
+  <!--<!-- /.col-lg-12 -->
+<!--</div>-->
+<!--<!-- /. row -->
+
+<!--<!-- contrast matrix -->
+ <!--<div class="row">  -->
+  <!--<!--<!-- panel for sites -->  
+  <!--<div class="col-lg-12">-->
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+      	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#analysisNamesPanel">
+	      Analysis Name. (Click to toggle this panel.)
+	    </a>
+	  </h4>  
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" style="overflow-y:auto;height:50px;" -webkit-scrollbar>
+       <div id="analysisNamesPanel" class="panel-collapse collapse in" >      
+        <div class="table-responsive" >
+
+         <div class="form-group">
+	    <div class="text">
+	      <label>
+		<b>Analysis Name:&nbsp;</b>
+	      </label>
+	      <input type = "text" id ="analysisDetailName" name ="analysisDetailName" value="{{analysisDetailName}}" required>
+	    </div>
+	    <p class="help-block">Please enter analysis name.</p>
+	  </div> 
+        </div>	
+	
+        <!-- /.table-responsive --> 
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+      	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#limmaParametersPanel">
+	      Limma Parameters. (Click to toggle this panel.)
+	    </a>
+	  </h4>  
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" style="overflow-y:auto;height:50px;" -webkit-scrollbar>
+       <div id="limmaParametersPanel" class="panel-collapse collapse in" >      
+        <div class="table-responsive" >
+
+          <div class="form-group">
+	    <div class="text">
+	      <label>
+		<b>Normalisation Method:&nbsp;</b>
+	      </label>
+	      <select id ="normalizationMethod" name ="normalizationMethod" value="" required>
+		<option>--Select Method--</option>
+		  <option id = "EdgeRnormalizationMethod" value = "EdgeR" selected>EdgeR</option>
+	      </select>
+	    </div>
+	    <p class="help-block">Please select normalisation method.</p>
+	  </div> 
+        </div>
+	
+        <!-- /.table-responsive --> 
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+
+<p class="text-center">
+   <button type="button" class="btn btn-primary btn-lg" value = "0" name = "analyzeFileSelectFactorSubmitButton" id="analyzeFileSelectFactorSubmitButton" onclick="javascript:submitAnalysis();">Submit Limma Analysis</button>&nbsp;&nbsp;
+</p>
+
+</form>
+{% endblock content %}

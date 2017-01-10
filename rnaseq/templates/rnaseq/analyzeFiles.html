@@ -1,0 +1,240 @@
+{% extends "base.html" %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/default.css">
+<!-- <link rel="stylesheet" type="text/css" href="/static/css/nouislider.css"> -->
+<!-- div.demo { padding: 10px !important; }; -->
+{% endblock css%}
+{% block js %}
+<script>
+  $(document).ready(function() {
+    
+    $('#sitesDataTable').DataTable({
+      paging: false   
+    });
+    $('#usersDataTable').DataTable({
+       paging: false 
+      }
+    );   
+    $('#selectAllStudies').click ( function()    
+     {        
+       $("input[name='studyId']").prop('checked', $(this).is(':checked'));
+     }
+    );
+
+    $('#selectAllSections').click ( function()    
+     {        
+       $("input[name='sectionId']").prop('checked', $(this).is(':checked'));
+     }
+
+    );    
+  });
+</script>
+
+{% endblock js %}
+
+{% block content %}
+
+<!-- /.row -->
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Analyze Report</h1>
+    <p>Please select from the following selection criteria to view the analyze data.</p>    
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<form method = "post" id="analyzeFileForm" name="analyzeFileForm" action="/pathway/analyzeFileSubmit/">
+ {% csrf_token %} 
+ <div class="row">  
+  <!-- panel for sites -->  
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+      	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#inputRegionPanel1">
+	      Select Factor 1 for comparison. (Click to toggle this panel.)
+	    </a>
+	  </h4>  
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" id="comparison1Panel" class="panel-collapse collapse in" style="height:550px;overflow-y:auto;" -webkit-scrollbar>
+       <div>      
+	  <p>Please select a comparison factor:</p>
+	  <table id="comparison1Table" name="comparison1Table" class="display" cellspacing="0" width="100%">	  
+	   <thead>
+	      <tr >
+		<th>Select</th>
+                <th>Comparison 1</th>
+                <th>Description</th>
+              </tr>
+           </thead>
+           <tbody>
+           {% for comparisonObj in comparison1ObjList %}
+             <tr>
+               <td>
+		  <div class="radio">
+		    <label>
+		      <input type="radio" value="{{comparisonObj.comparisonString}}" name ="comparison1String" id ="comparison1String" >
+		    </label>
+		  </div>
+		  </td>
+               <td>{{comparisonObj.comparisonString}}</td>
+               <td>{{comparisonObj.comparisonDescription}}</td>
+             </tr>
+           {% endfor %}
+           </tbody>
+          </table>
+        <!-- /.table-responsive -->
+       </div>
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-6 -->
+  <!-- panel for sites -->  
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+      	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#inputRegionPanel2">
+	      Select Factor 1 for comparison. (Click to toggle this panel.)
+	    </a>
+	  </h4>  
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" id="inputRegionPanel2" class="panel-collapse collapse in" style="height:550px;overflow-y:auto;" -webkit-scrollbar>
+       <div>      
+	  <p>Please select a comparison factor:</p>
+	  <table id="comparison2Table" name="comparison2Table" class="display" cellspacing="0" width="100%">	  
+	   <thead>
+	      <tr >
+		<th>Select</th>
+                <th>Comparison 2</th>
+                <th>Description</th>
+              </tr>
+           </thead>
+           <tbody>
+           {% for comparisonObj in comparison1ObjList %}
+             <tr>
+               <td>
+		  <div class="radio">
+		    <label>
+		      <input type="radio" value="{{comparisonObj.comparisonString}}" name ="comparison2String" id ="comparison2String" >
+		    </label>
+		  </div>
+		  </td>
+               <td>{{comparisonObj.comparisonString}}</td>
+               <td>{{comparisonObj.comparisonDescription}}</td>
+             </tr>
+           {% endfor %}
+           </tbody>
+          </table>
+        <!-- /.table-responsive -->
+       </div>
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-6 -->   
+ </div>
+ <!-- /.row -->
+ 
+<!-- /.row -->
+ <div class="row">   
+  <!-- panel for users -->  
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#parametersPanel">
+	      Select Parameters. (Click to toggle this panel.)
+	    </a>
+	  </h4>       
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" id="parametersPanel" class="panel-collapse collapse in" style="height:450px;overflow-y:auto;"  -webkit-scrollbar>
+       <div  >         
+	<div class="form-group">
+	  <div class="checkbox">
+	    <label>
+	      <input type="checkbox" value="1" name="useAverageData" id="useAverageData" ></input><b>Use average data.</b>
+	    </label>
+	  </div>
+	  <p class="help-block">Use average data (default is to use replicates).</p>
+	</div> 	
+
+	<div class="form-group">
+	  <div class="text">
+	    <label>
+	      <b>Fold Change:</b><input type="text" value="" name="foldChangeCutOff" id="foldChangeCutOff" ></input>
+	    </label>
+	  </div>
+	  <p class="help-block">Set Fold Change Cut Off.</p>
+	</div> 
+
+	<div class="form-group">
+	  <div class="text">
+	    <label>
+	      <b>P Value Cutoff:</b><input type="text" value="" name="pValueCutOff" id="pValueCutOff" ></input>
+	    </label>
+	  </div>
+	  <p class="help-block">P Value Cutoff.</p>
+	</div> 
+	<div class="form-group">
+	  <div class="checkbox">
+	    <label>
+	      <input type="checkbox" value="1" name="useFDR" id="useFDR" ></input><b>Use FDR (for decision tests):</b>
+	    </label>
+	  </div>
+	  <p class="help-block">Use FDR for adjustment method for decision tests.</p>
+	</div> 	
+
+	<div class="form-group">
+	  <div class="text">
+	    <label>
+	      <b>Fold Change (Decision tests):</b><input type="text" value="" name="testFoldChangeCutOff" id="testFoldChangeCutOff" ></input>
+	    </label>
+	  </div>
+	  <p class="help-block">Set Fold Change Cut Off for decision tests.</p>
+	</div> 
+
+	<div class="form-group">
+	  <div class="text">
+	    <label>
+	      <b>P Value Cutoff (Decision tests):</b><input type="text" value="" name="testPValueCutOff" id="testPValueCutOff" ></input>
+	    </label>
+	  </div>
+	  <p class="help-block">P Value Cutoff for decision tests.</p>
+	</div> 
+
+	<div class="form-group">
+	  <p><b>Please choose comparison method.</b></p>
+  	  {% for comparisonMethod in comparisonMethods %}	  
+	    <div class="radio">
+	      <label><input type="radio" value="{{comparisonMethod.id}}" name="comparisonMethodId" id="ccomparisonMethodId-{{comparisonMethod.id}}">{{comparisonMethod.name}}.</label>
+	    </div>
+	  {% endfor %}
+	  <p class="help-block">The comparison method will be used for creating the contrast matrix for the linear model. </p>
+        </div>
+	
+       </div>
+
+       </div>
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+ </div>
+ <!-- /.row --> 
+ 
+   <p class="text-center">
+   <button type="submit" class="btn btn-primary btn-lg" value = "0" name = "viewReportButton" id="viewReportButton" >Cancel</button>&nbsp;&nbsp;&nbsp;
+   <button type="submit" class="btn btn-danger btn-lg" value = "1" name = "viewReportButton" id="viewReportButton" >Submit Analysis</button>
+ </p>
+ 
+</form>
+{% endblock content %}

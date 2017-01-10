@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% block css %}
+<!--<link rel="stylesheet" type="text/css" href="/static/css/default.css">-->
+<!-- <link rel="stylesheet" type="text/css" href="/static/css/nouislider.css"> -->
+<!-- div.demo { padding: 10px !important; }; -->
+{% endblock css%}
+{% block js %}
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    $('#projectsTable').DataTable();
+
+  } );
+  
+
+  $(document).ready(function() {
+    $('#summaryDetailTable').DataTable();
+
+  } );
+
+  function submitProjectForm(obj){
+      objId = obj.id;
+
+      data = objId.split("-");
+
+      if (data.length > 0){
+
+         projectId = data[1];
+
+      }
+
+    $("#projectId").val(projectId);
+
+    $("#projectForm").submit();
+  }
+
+</script>
+
+{% endblock js %}
+
+{% block content %}
+
+<!-- /.row -->
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Sample detail for file {{sampleDetail.sampleName}}</h1>
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<form method = "post" id = "dataForm" name = "dataForm" action="/rnaseq/listFiles/">
+ {% csrf_token %} 
+ <input type="hidden" value="" name="geneId" id ="geneId"/>
+ <div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Sample Detail
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" >
+	<div id="listFilesPanel" class="panel-collapse collapse" >
+	  <p class="text-center">
+	    <h4>File Name:</h4>
+	    <ul>
+	      {{sampleDetail.sampleName}}    	    
+	    </ul>
+	  </p>
+	  
+	  <p class="text-center">
+	    <h4># Input Reads:</h4>
+	    <ul>
+	      {{sampleDetail.numberOfInputReads}}    	    
+	    </ul>
+	  </p>
+	  <p class="text-center">
+	    <h4>Pct Uniquely mapped reads:</h4>
+	    <ul>
+	      {{sampleDetail.pctUniquelyMappedReads}}    	    
+	    </ul>
+	  </p>
+	  <p class="text-center">
+	    <h4>Pct uniquely mapped multiple loci:</h4>
+	    <ul>
+	      {{sampleDetail.pctUnMappedMultipleLoci}}    	    
+	    </ul>
+	  </p>
+	  <p class="text-center">
+	    <h4>Pct too many loci:</h4>
+	    <ul>
+	      {{sampleDetail.pctUnMappedTooManyLoci}}    	    
+	    </ul>
+	  </p>
+	  <p class="text-center">
+	    <h4>Pct too many mismatches:</h4>
+	    <ul>
+	      {{sampleDetail.pctUnMappedTooManyMismatches}}    	    
+	    </ul>
+	  </p>
+	  <p class="text-center">
+	    <h4>Total alignments:</h4>
+	    <ul>
+	      {{sampleDetail.totalAlignments}}    	    
+	    </ul>
+	  </p>
+	</div>
+      </div>      
+
+      <!-- /.panel-body -->
+      <div class="panel-body" >
+	<div id="qualiMapQcPanel" class="panel-collapse collapse" >
+	  <p class="text-center">
+	    <h4>Quali Map Panel:</h4>
+	    <iframe src="{{sampleDetail.qcQualiMapHTMLPath}}" style = "height:100%;weight:100%;"/>
+	  </p>
+	</div>
+      </div>      
+
+      <!-- /.panel-body -->
+      <div class="panel-body" >
+	<div id="fcQcPanel" class="panel-collapse collapse" >
+	  <p class="text-center">
+	    <h4>Fact Qc info Panel:</h4>
+	    <iframe src="{{sampleDetail.fastQcHTMLPath}}" style = "height:100%;weight:100%;"/>
+	  </p>
+	</div>
+      </div>      
+
+    </div>
+  </div>
+  <!-- /.col-lg-12 -->
+ </div>
+ <!-- /.row -->
+</form>
+{% endblock content %}

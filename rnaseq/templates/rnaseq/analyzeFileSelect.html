@@ -1,0 +1,297 @@
+{% extends "base.html" %}
+{% block css %}
+<!--<link rel="stylesheet" type="text/css" href="/static/css/default.css">-->
+<!-- <link rel="stylesheet" type="text/css" href="/static/css/nouislider.css"> -->
+<!-- div.demo { padding: 10px !important; }; -->
+{% endblock css%}
+{% block js %}
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    
+    $('#analysisDetailsTable').DataTable();
+    $('#phenotypeFilesTable').DataTable();
+
+  });
+
+  function displayAnalysisDetail(obj){
+      objId = obj.id;
+
+      data = objId.split("-");
+
+      if (data.length > 0){
+
+         analysisDetailId = data[1];
+
+      }
+
+    $("#analysisDetailId").val(analysisDetailId);
+
+    $("#analyzeFileSelectForm").attr("action","/rnaseq/displayAnalysisDetail/");
+    
+    $("#analyzeFileSelectForm").submit();
+  }
+
+  function downloadAnalysisDetail(obj){
+      objId = obj.id;
+
+      data = objId.split("-");
+
+      if (data.length > 0){
+
+         analysisDetailId = data[1];
+
+      }
+
+    $("#analysisDetailId").val(analysisDetailId);
+
+    $("#downloadAllData").val("1");
+
+    $("#analyzeFileSelectForm").attr("action","/rnaseq/downloadData/");
+    
+    $("#analyzeFileSelectForm").submit();
+  }
+
+  function submitPhenotypeFile(obj){
+      objId = obj.id;
+
+      data = objId.split("-");
+
+      if (data.length > 0){
+
+         phenotypeFileId = data[1];
+
+      }
+
+    $("#phenotypeFileId").val(phenotypeFileId);
+
+    $("#analyzeFileSelectForm").attr("action","/rnaseq/analyzeFileSelectColumns/")
+    
+    $("#analyzeFileSelectForm").submit();
+  }
+
+  function uploadPhenotypeFile(obj){
+  
+    $("#analyzeFileSelectForm").attr("action","/rnaseq/analyzeFileSelectColumns/");
+    
+    $("#analyzeFileSelectForm").submit();
+  }
+  
+  function submitDeletePhenotypeFile(obj){
+  
+      objId = obj.id;
+
+      data = objId.split("-");
+
+      if (data.length > 0){
+
+         phenotypeFileId = data[1];
+
+      }
+
+    $("#phenotypeFileId").val(phenotypeFileId);
+
+    if(confirm('Please confirm if you would like to delete this file.')){
+
+      $("#analyzeFileSelectForm").attr("action","/rnaseq/deletePhenotypeFile/");
+  
+      $("#analyzeFileSelectForm").submit();
+    }
+  } 
+  
+  function submitDeleteAnalysis(obj){
+  
+      objId = obj.id;
+
+      data = objId.split("-");
+
+      if (data.length > 0){
+
+         analysisDetailId= data[1];
+
+      }
+
+    $("#analysisDetailId").val(analysisDetailId);
+
+    if(confirm('Please confirm if you would like to delete this analysis. All associated results will be deleted.')){
+
+      $("#analyzeFileSelectForm").attr("action","/rnaseq/deleteAnalysisDetail/");
+  
+      $("#analyzeFileSelectForm").submit();
+    }
+  }   
+  
+</script>
+
+{% endblock js %}
+
+{% block content %}
+
+<form action="/rnaseq/analyzeFileSelectColumns/" enctype="multipart/form-data" method="post" id = "analyzeFileSelectForm" >
+ {% csrf_token %} 
+
+ <input type="hidden" value="" name="analysisDetailId" id ="analysisDetailId"/>
+ <input type="hidden" value="" name="downloadAllData" id ="downloadAllData"/>
+ <input type="hidden" value="" name="phenotypeFileId" id ="phenotypeFileId"/>
+ 
+{% if analysisDetailObjList|length > 0 %}	 
+
+<!-- /.row -->
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Past analyses for project {{dataFile.project.name}}</h1>
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+ <div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        Past Analyses
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" >
+        <div class="table-responsive" >
+	  <table id="analysisDetailsTable" class="display" cellspacing="0" width="100%">
+	   <thead>
+	      <tr >
+		<th>Name</th>
+		<th>User</th>
+		<th>Date Analyzed</th>
+		<th>Details</th>		
+		<th>Download</th>	
+		<th>Delete</th>	
+              </tr>
+           </thead>
+           <tbody>
+           {% for analysisDetailObj in analysisDetailObjList %}
+             <tr>
+	       <td>{{ analysisDetailObj.analysisDetail.name}}</td>
+	       <td>{{ analysisDetailObj.analysisDetail.user}}</td>
+	       <td>{{ analysisDetailObj.dateAnalyzed}}</td>
+               <td><button type="button" class="btn btn-primary" id = "analysisDetailButton-{{analysisDetailObj.analysisDetail.id}}" name = "analysisDetailButton-{{analysisDetailObj.analysisDetail.id}}" onclick ="javascript:displayAnalysisDetail(this);">Details </button></td>
+               <td><button type="button" class="btn btn-primary" id = "analysisDetailButton-{{analysisDetailObj.analysisDetail.id}}" name = "analysisDetailButton-{{analysisDetailObj.analysisDetail.id}}" onclick ="javascript:downloadAnalysisDetail(this);">Download </button></td>
+               <td><button type="button" class="btn btn-warning" id = "analysisDetailButton-{{analysisDetailObj.analysisDetail.id}}" name = "analysisDetailButton-{{analysisDetailObj.analysisDetail.id}}" onclick ="javascript:submitDeleteAnalysis(this);">Delete</button></td>
+             </tr>
+           {% endfor %}
+           </tbody>
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+ </div>
+ <!-- /.row -->
+ {% endif %}
+
+<!-- /.row -->
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Phenotype file for project {{dataFile.project.name}}</h1>
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+ <input type="hidden" value="{{dataFile.id}}" name="dataFileId" id ="dataFileId"/>
+ <div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+
+      	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#phenotypeFileSelectPanel">
+	              Phenotype file for project {{dataFile.project.name}}. (Click to toggle this panel.)
+	    </a>
+	  </h4>  
+
+      </div>
+      
+      
+      <!-- /.panel-heading -->
+      <div class="panel-body" >	  
+        <div id="phenotypeFileSelectPanel" class="panel-collapse collapse in" >        
+          <p>
+	    Please select the phenotype file. This file needs to be a CSV file. You can either upload a new file or select from an existing file. For existing files, if you would like to delete the phenotype file, it can be deleted only if there are no associated analysis related to the file.
+	  </p>
+	  
+	  <p>
+	    You can provide a custom name for the file. In case you do not provide a name, the name of hte uploaded file will be used.	  
+	  </p>
+	  
+	  <p>
+	    <label>Phenotype file:</label>&nbsp;
+	    <input class="form-control" name="datafilePath" type="file" required> 
+	  </p>
+	  
+	  <p>
+	  <div class="form-group">
+	    <div class="text">
+	      <label>
+		<b>Phenotype File Name:&nbsp;</b>
+	      </label>
+	      <input type = "text" id ="phenotypeFileName" name ="phenotypeFileName" value="{{phenotypeFile.name}}" width = "200px;" >
+	    </div>
+	    <p class="help-block">Please enter phenotype File Name.</p>
+	  </div> 
+        <!--</div>	-->
+
+	  </p>
+	  
+	  
+	  {% if phenotypeFileObjList|length > 0 %}	  
+	  
+	    <p>
+	      OR
+	    </p>
+
+        <!-- /.table-responsive -->
+	  <p class="help-block">Select Phenotype File.</p>
+	  </p>
+	    <p>
+	    <div class="table-responsive" >
+	      <table id="phenotypeFilesTable" class="display" cellspacing="0" width="100%">
+	       <thead>
+		  <tr >
+		    <th>PhenotypeFile</a></th>
+		    <th>Select</a></th>		
+		    <th>Delete</a></th>	
+		  </tr>
+	       </thead>
+	       <tbody>
+	       {% for phenotypeFileObj in phenotypeFileObjList %}
+		 <tr>
+		   <td>{{ phenotypeFileObj.phenotypeFile.name}}</td>
+		   <td><button type="button" class="btn btn-primary" id = "phenotypeFileSelectButton-{{phenotypeFileObj.phenotypeFile.id}}" name = "phenotypeFileSelectButton-{{phenotypeFileObj.phenotypeFile.id}}" onclick ="javascript:submitPhenotypeFile(this);">Select </button></td>
+		   <td><button type="button" class="btn btn-primary" id = "phenotypeFileDeleteButton-{{phenotypeFileObj.phenotypeFile.id}}" name = "phenotypeFileDeleteButton-{{phenotypeFileObj.phenotypeFile.id}}" onclick ="javascript:submitDeletePhenotypeFile(this);" {% if phenotypeFileObj.noDeleteFlag %} disabled {% endif %}>Delete </button></td>
+		 </tr>
+	       {% endfor %}
+	       </tbody>
+	      </table>
+	    </div>
+	    </p>
+
+	  {% endif %}
+
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+ </div>
+ <!-- /.row -->
+ 
+   <p class="text-center">
+      <button type="submit" class="btn btn-primary btn-lg" value = "0" name = "submitButton" id="submitButton" onclick ="javascript:cancelUploadFile(this);">Cancel</button>      
+      <button type="submit" class="btn btn-primary btn-lg" value = "0" name = "submitButton" id="submitButton" onclick ="javascript:uploadPhenotypeFile(this);">Submit</button>
+   </p> 
+</form>
+{% endblock content %}

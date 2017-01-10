@@ -1,0 +1,672 @@
+{% extends "base.html" %}
+{% block css %}
+
+{% endblock css%}
+{% block js %}
+
+<script>
+
+{% for contrastObj in contrastObjList%}   
+  $(document).ready(function() {
+    
+    
+    $('#geneUpTable-{{contrastObj.contrast}}').DataTable();
+       
+    
+    $('#geneDownTable-{{contrastObj.contrast}}').DataTable();
+    
+
+  });
+  {% endfor %}
+  
+  function submitRefreshDisplay(obj){
+      
+    $("#contrastResultForm").attr("action","/pathway/displayAnalysisDetail/");	      
+      
+    $("#contrastResultForm").submit();
+  } 
+  
+  function submitScatterPlot(obj){
+      objId = obj.id;
+      
+      data = objId.split("-");
+      
+      objVal = data[1];
+
+      if (objVal == "0" ){
+      
+	  $("#contrastResultForm").attr("action","/pathway/scatterPlotSubmit/");	      
+      
+      }
+      else if (objVal == "1" ){
+      
+	  $("#contrastResultForm").attr("action","/pathway/scatterPlotTopTableSubmit/");	      
+      
+      } 
+
+    $("#contrastResultForm").submit();
+  }  
+  
+  function submitDownloadDEGData(obj){
+      objId = obj.id;
+      
+      data = objId.split("-");
+      
+      objVal = data[1];
+      
+      $("#downloadType").val(objVal)
+  
+      $("#contrastResultForm").attr("action","/pathway/submitDownloadDEGData/");	      
+
+      $("#contrastResultForm").submit();
+  }     
+
+  function submitBrainRegionDetail(obj){
+      objId = obj.id;
+
+      data = objId.split("-");
+
+      if (data.length > 0){
+
+         brainRegionId = data[1];
+
+      }
+
+    $("#brainRegionId").val(brainRegionId);
+
+    $("#contrastResultForm").attr("action","/pathway/displayBrainRegionExpressionLevelsSubmit/");
+
+    $("#contrastResultForm").submit();
+  }
+  
+  function submitGeneDetail(obj){
+      objId = obj.id;
+
+      data = objId.split("-");
+
+      if (data.length > 0){
+
+         geneId = data[1];
+
+      }
+
+    $("#geneId").val(geneId);
+    
+    $("#contrastResultForm").attr("action","/pathway/displayGeneExpressionLevelsSubmit/");    
+
+    $("#contrastResultForm").submit();
+  }
+
+</script>
+
+  <script>
+
+  </script>
+
+    <script type="text/javascript">
+  
+  $(document).ready(function() {
+  
+      var queryUpList = [{% for contrastObj in contrastObjList %} {% for genesUpObj in contrastObj.genesUpObjList %}"{{contrastObj.contrast}}-{{genesUpObj.allenName}}",{% endfor %}{% endfor %}];
+      
+      var queryDownList = [{% for contrastObj in contrastObjList %} {% for genesDownObj in contrastObj.genesDownObjList %}"{{contrastObj.contrast}}-{{geneDownObj.allenName}}",{% endfor %}{% endfor %}];
+
+
+      for (i = 0; i < queryUpList.length; i++)
+       {
+	query = queryUpList[i];
+	divName = "geneUp-" + query;
+  
+        data = query.split("-");
+	geneName = data[1];
+	
+	mygene_info_gene_query(geneName, divName);
+	
+      }
+
+
+      for (i = 0; i < queryDownList.length; i++)
+       {
+	query = queryDownList[i];
+	divName = "geneDown-" + query;
+  
+        data = query.split("-");
+	geneName = data[1];
+	
+	mygene_info_gene_query(geneName, divName);
+	
+      }
+
+      function mygene_info_gene_query(geneName, divName){
+
+	  var gene_query_url = 'http://mygene.info/v2/query';
+	  var url = gene_query_url + "?species=mouse&limit=100&callback=?&q="+geneName;
+	  
+	  $.getJSON(url, function (result){
+
+		  var html;
+		  $("#" + divName).empty();
+		  if ($.isArray(result.hits)){
+		      html = '<p>Found '+result.total+' matched mouse gene(s).</p>';
+		      html = '';
+		      if (result.total > 0){
+			  html += '<table>';
+			  $.each(result.hits, function(i, gene){
+
+			      html += '<tr><td><a href="#" onclick="javascript:showgeneDetails(\'' + gene._id + '\', \'' + divName + '\' );">' + gene.symbol + '</a></td><td>'+ gene.name + '</td></tr>';
+			  });
+			  html += '</table>';
+		      }
+		  }
+		  else {
+		      var err = result.error || result.reason || "Invalid query!";
+		      html = '<p>Error:<pre>&nbsp;'+err+'</pre></p>';
+		  }
+		  
+		  $("#" + divName).html(html);
+		  
+	      }
+	      
+          )
+      };            
+      
+   });     
+   </script>
+
+<script>
+
+  $(document).ready(function() {  
+
+  $(function () {
+  
+      $('#geneExpressionUpHeatMap').highcharts({
+  
+	  chart: {
+	      type: 'heatmap',
+	      marginTop: 40,
+	      marginBottom: 80,
+	      plotBorderWidth: 1
+	  },
+  
+	  title: {
+	      text: 'Gene expression level by region'
+	  },
+  
+	  yAxis: {
+	      categories: [{% for brainRegion in brainRegions %}'{{brainRegion.description}}',{% endfor %}]
+	  },
+  
+	  xAxis: {
+	      categories: [{% for expressionUpGene in expressionUpGenes %}'{{expressionUpGene}}',{% endfor %}],
+	      title: null
+	  },
+  
+	  colorAxis: {
+	      min: 0,
+	      minColor: '#FFFFFF',
+	      maxColor: Highcharts.getOptions().colors[0]
+	  },
+  
+	  legend: {
+	      align: 'right',
+	      layout: 'vertical',
+	      margin: 0,
+	      verticalAlign: 'top',
+	      <!--y: 25,-->
+	      symbolHeight: 280
+	  },
+  
+	  tooltip: {
+	      formatter: function () {
+		  return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> has expression <br><b>' +
+		      this.point.value + '</b> of the gene <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
+	      }
+	  },
+  
+	  series: [{
+	      name: 'Gene expression level by region',
+	      borderWidth: 1,
+	      data: [{% for expressionLevelValues in expressionLevelUpValues %}{% for expressionLevelValue in expressionLevelValues %}[{{forloop.parentloop.counter0}}, {{forloop.counter0}}, {{expressionLevelValue}}],{% endfor %}{% endfor %}],
+	      dataLabels: {
+		  enabled: true,
+		  color: '#000000'
+	      }
+	  }]
+  
+      });
+  });
+  
+ $(function () {
+  
+      $('#geneExpressionDownHeatMap').highcharts({
+  
+	  chart: {
+	      type: 'heatmap',
+	      marginTop: 40,
+	      marginBottom: 80,
+	      plotBorderWidth: 1
+	  },
+  
+	  title: {
+	      text: 'Gene expression level by region'
+	  },
+  
+	  yAxis: {
+	      categories: [{% for brainRegion in brainRegions %}'{{brainRegion.description}}',{% endfor %}]
+	  },
+  
+	  xAxis: {
+	      categories: [{% for expressionDownGene in expressionDownGenes %}'{{expressionDownGene}}',{% endfor %}],
+	      title: null
+	  },
+  
+	  colorAxis: {
+	      min: 0,
+	      minColor: '#FFFFFF',
+	      maxColor: Highcharts.getOptions().colors[0]
+	  },
+  
+	  legend: {
+	      align: 'right',
+	      layout: 'vertical',
+	      margin: 0,
+	      verticalAlign: 'top',
+	      <!--y: 25,-->
+	      symbolHeight: 280
+	  },
+  
+	  tooltip: {
+	      formatter: function () {
+		  return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> has expression <br><b>' +
+		      this.point.value + '</b> of the gene <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
+	      }
+	  },
+  
+	  series: [{
+	      name: 'Gene expression level by region',
+	      borderWidth: 1,
+	      data: [{% for expressionLevelValues in expressionLevelDownValues %}{% for expressionLevelValue in expressionLevelValues %}[{{forloop.parentloop.counter0}}, {{forloop.counter0}}, {{expressionLevelValue}}],{% endfor %}{% endfor %}],
+	      dataLabels: {
+		  enabled: true,
+		  color: '#000000'
+	      }
+	  }]
+  
+      });
+  });
+
+});  
+
+</script>
+
+{% endblock js %}
+
+{% block content %}
+
+<div class="row">  
+  <!-- panel for sites -->  
+  <div class="col-lg-12">
+
+  </div>
+</div>      
+      
+
+<!-- /.row -->
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Analyze Report</h1>
+    <p>Results of analysis.</p>    
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<form method = "post" id="analyzePlotsForm" name="analyzePlotsForm" action="/rnaseq/analyzeFileSubmit/">
+{% csrf_token %} 
+ <input type="hidden" value="{{dataFile.id}}" name="dataFileId" id ="dataFileId"/> 
+ <input type="hidden" value="{{phenotypeFilePath}}" name="phenotypeFilePath" id ="phenotypeFilePath"/> 
+ 
+{% for phenotypeColumn in phenotypeColumns %} 
+ <input type="hidden" value="{{phenotypeColumn}}" name="phenotypeColumn" id ="phenotypeColumn"/> 
+{% endfor %}
+
+{% for columnTypeId in columnTypeIds %} 
+ <input type="hidden" value="{{columnTypeId}}" name="columnTypeId" id ="columnTypeId"/> 
+{% endfor %}
+ 
+<!-- design matrix -->
+ <div class="row">  
+  <!-- panel for sites -->  
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+      	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#designMatrixPanel">
+	      Normalized data. (Click to toggle this panel.)
+	    </a>
+	  </h4>  
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" style="overflow-y:auto;height:100px;" -webkit-scrollbar>
+       <div id="designMatrixPanel" class="panel-collapse collapse in" >      
+        <div class="table-responsive" >
+	  <p>Normalized Counts Matrix</p>
+	  <button type="submit" class="btn btn-primary btn-lg" value = "0" name = "analyzeFileSelectFactorSubmitButton" id="analyzeFileSelectFactorSubmitButton" disabled >Download Normalized Data</button>
+        </div>
+        <!-- /.table-responsive -->
+       </div>
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /. row -->
+
+<!-- design matrix -->
+ <div class="row">  
+  <!-- panel for sites -->  
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+      	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#designMatrixPanel">
+	      Plots. (Click to toggle this panel.)
+	    </a>
+	  </h4>  
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" style="overflow-y:auto;height:600px;" -webkit-scrollbar>
+       <div id="designMatrixPanel" class="panel-collapse collapse in" >      
+        <div class="table-responsive" >
+	  <p>
+	    <label>MDS plot:</label>
+	    <img src = "/static/img/{{plotMDSPath}}.png" width="550px" height="200px"/> 
+	  </p>
+	  <p>
+	    <label>MA plot:</label>
+	    <img src = "/static/img/{{plotMAPath}}.png" width="550px" height="200px"/> 
+	  </p>
+        </div>
+        <!-- /.table-responsive -->
+       </div>
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /. row -->
+
+<!-- design matrix -->
+ <div class="row">  
+  <!-- panel for sites -->  
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+      	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#designMatrixPanel">
+	      Details. (Click to toggle this panel.)
+	    </a>
+	  </h4>  
+      </div>
+      <!-- DParameters Used-->
+      <div class="panel panel-success" style="overflow-x:auto;">
+	  <div class="panel-heading">
+	      <h4 class="panel-title">
+		  <a data-toggle="collapse" data-parent="#accordion2" href="#parametersPanel">
+		    Parameters&nbsp;(  Please click to toggle this panel. )
+		  </a>
+		</h4>
+	  </div>
+	  <div id="parametersPanel" class="panel-collapse collapse in" style="height:200px;overflow-y:auto;"  -webkit-scrollbar>
+	      <div class="panel-body">
+
+	       <!-- begin factors table -->
+		<div class="table-responsive">
+		 <table class="table table-striped table-bordered table-hover" id = "factorsTable" >
+		   <thead>
+		     <tr>
+		       <th>Factors</th>
+		     </tr>
+		   </thead>
+		   <tbody>
+		     {% for designFactor in analysisDetailObj.designFactors %}
+		      <tr class="{% cycle 'odd gradeX' 'even gradeC' %}" >				   
+			<td>
+			  {{designFactor.name}}
+			</td>
+		      </tr>				   
+		     {% endfor %}
+		   </tbody>
+		 </table>		    
+	       </div>
+	       <!-- end factors table -->
+	       <!-- begin contrasts table -->
+		<div class="table-responsive">
+		 <table class="table table-striped table-bordered table-hover" id = "contrastsTable" >
+		   <thead>
+		     <tr>
+		       <th>Contrasts</th>
+		     </tr>
+		   </thead>
+		   <tbody>
+		     {% for limmaContrast in analysisDetailObj.limmaContrasts %}
+		      <tr class="{% cycle 'odd gradeX' 'even gradeC' %}" >				   
+			<td>
+			  {{limmaContrast.name}}
+			</td>
+		      </tr>				   
+		     {% endfor %}
+		   </tbody>
+		 </table>		    
+	       </div>
+	       <!-- end contrasts table -->
+	     </div>
+	  </div>
+      </div>
+      <!-- end up panel -->
+      <!-- Up regulated heatmap panel -->
+      <div class="panel panel-success" style="overflow-x:auto;">
+	  <div class="panel-heading">
+	      <h4 class="panel-title">
+		  <a data-toggle="collapse" data-parent="#accordion2" href="#plotPanel">
+		    Plots&nbsp;(  Please click to toggle this panel. )
+		  </a>
+		</h4>
+	  </div>
+	  <div id="plotPanel" class="panel-collapse collapse in" style="height:200px;overflow-y:auto;"  -webkit-scrollbar>
+	      <div class="panel-body">
+	        {% for analysisPlot in analysisPlots %}
+		<p>
+		  <label>MDS plot for factor:{{analysisPlot.plotFileName}}</label>
+		  <img src = "/static/img/{{analysisPlot.plotFileName}}.png" width="550px" height="200px"/> 
+		</p>
+		{% endfor %}
+	     </div>
+	  </div>
+      </div>
+    <!-- end up panel -->
+   </div>
+ <!--</div>-->
+ <!--<div class="row">  -->
+  <!-- panel for sites -->  
+  <!--<div class="col-lg-12">-->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+      	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#inputRegionPanel1">
+	      Contrasts. (Click to toggle this panel.)
+	    </a>
+	  </h4>  
+      </div>
+      
+    <!-- Example row of columns -->   
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+	<h4 class="panel-title">
+	  <a data-toggle="collapse" data-parent="#panels1" href="#contrastListPanel">
+	     List of Contrasts </b>&nbsp;( Please click to toggle this panel. )
+	  </a>
+	</h4>
+      </div>
+      <div id="contrastListPanel" class="panel-collapse collapse in">
+      <p>&nbsp;</p>
+      {% for contrastObj in contrastObjList%}   
+      
+      <div class="panel-group" id="accordion1">
+        <div class="panel panel-warning">
+	    <div class="panel-heading">
+	         <h4 class="panel-title">
+	  	   <a data-toggle="collapse" data-parent="#accordion3" href="#contrastPanel-{{contrastObj.contrast}}">
+	  	   {{ contrastObj.contrast }} </b>&nbsp;(  Please click to toggle this panel. )
+	  	   </a>
+	         </h4>
+	    </div>
+	    <div id="contrastPanel-{{contrastObj.contrast}}" class="panel-collapse collapse in">
+	      <div class="panel-body">	      
+		  <div class="panel-group" id="accordion2">
+		    <!-- start up panel -->
+		    <!--<div class="panel panel-default">-->
+		      <!--<div class="panel-heading">-->
+			  <!--<h4 class="panel-title">-->
+			    <!--<a data-toggle="collapse" data-parent="#panels1" href="#inputRegionPanel1">-->
+			      <!--Contrasts. (Click to toggle this panel.)-->
+			    <!--</a>-->
+			  <!--</h4>  -->
+		      <!--</div>	-->
+		    <!--</div>-->
+		    <div class="panel panel-success" style="overflow-x:auto;">
+			<div class="panel-heading">
+			    <h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion2" href="#contrastsUpPanel-{{contrastObj.contrast}}">
+				  Up Regulated Genes &nbsp;(  Please click to toggle this panel. )
+				</a>
+			      </h4>
+			</div>
+			<div id="contrastsUpPanel-{{contrastObj.contrast}}" class="panel-collapse collapse in" style="height:400px;overflow-y:auto;"  -webkit-scrollbar>
+			    <div class="panel-body">
+			      <p>&nbsp;</p>
+			      <div class="table-responsive">
+			       <table class="table table-striped table-bordered table-hover" id = "geneUpTable-{{contrastObj.contrast}}" >
+				 <thead>
+				   <tr>
+				     <th>Select</th>
+				     <th>Gene Name</th>
+				     <th>Log FC (Limma)</th>
+				     <th>Avg Expr (Limma)</th>	
+				     <th>FDR (Limma)</th>	
+				   </tr>
+				 </thead>
+				 <tbody>
+				   {% for geneUpObj in contrastObj.geneUpObjList %}
+				    <tr class="{% cycle 'odd gradeX' 'even gradeC' %}" >				   
+				      <td>
+					 <div class="checkbox">
+					   <label>
+					     <input type="checkbox" value="{{geneUpObj.geneId}}" name ="geneUp" id ="geneUp" >
+					   </label>
+					 </div>
+				      </td>
+				      <td>
+					<a href="#" name="gene-{{geneUpObj.geneId}}" id="gene-{{geneUpObj.geneId}}" onclick="javascript:submitGeneDetail(this);">{{geneUpObj.geneId}}</a>
+					<br/>
+					  <div style="height:200px;overflow-y:auto;" id = "geneUp-{{geneUpObj.allenName}}" name = "geneUp-{{geneUpObj.allenName}}"></div>
+				      </td>
+				      <td>
+					{{geneUpObj.logFC}}
+				      </td>
+				      <td>
+					{{geneUpObj.aveExpr}}
+				      </td>
+				      <td>
+					{{geneUpObj.adjustedPValue}}
+				      </td>				      
+				    </tr>				   
+				   {% endfor %}
+				 </tbody>
+			       </table>		    
+			     </div>
+			     <p>
+				<button type="submit" class="btn btn-primary btn-lg" value = "0" name = "submitScatterPlotButton" id="submitScatterPlotButton-0" onclick = "javascript:submitDownloadDEGData(this);" >Download records</button>&nbsp;&nbsp;			     
+			     </p>
+			   </div>
+			</div>
+		    </div>
+		    <!-- end up panel -->
+		    <div class="panel panel-info" style="overflow-x:auto;">
+			<div class="panel-heading">
+			    <h4 class="panel-title">
+			      <a data-toggle="collapse" data-parent="#accordion2" href="#contrastsDownPanel-{{contrastObj.contrast}}">            
+				  Down Regulated Genes &nbsp;(  Please click to toggle this panel. )
+			      </a>
+			    </h4>
+			</div>
+			<div id="contrastsDownPanel-{{contrastObj.contrast}}" class="panel-collapse collapse" style="height:400px;overflow-y:auto;"  -webkit-scrollbar>
+			  <div class="panel-body"> 
+			      <p>&nbsp;</p>
+			      <div class="table-responsive">
+			       <table class="table table-striped table-bordered table-hover" id = "geneDownTable-{{contrastObj.contrast}}" >
+				 <thead>
+				   <tr>
+				     <th>Select</th>
+				     <th>Gene Name</th>
+				     <th>Log FC (Limma)</th>
+				     <th>Avg Expr (Limma)</th>	
+				     <th>FDR (Limma)</th>	
+				   </tr>
+				 </thead>
+				 <tbody>
+				   {% for geneDownObj in contrastObj.geneDownObjList %}
+				    <tr class="{% cycle 'odd gradeX' 'even gradeC' %}" >				   
+				      <td>
+					 <div class="checkbox">
+					   <label>
+					     <input type="checkbox" value="{{geneDownObj.geneId}}" name ="geneDown" id ="geneDown" >
+					   </label>
+					 </div>
+					 </td>
+				 
+				      <td><a href="#" name="gene-{{geneDownObj.geneId}}" id="gene-{{geneDownObj.geneId}}" onclick="javascript:submitGeneDetail(this);">{{geneDownObj.geneId}}</a></td>
+			      
+				      <td>
+					{{geneDownObj.logFC}}
+				      </td>
+				      <td>
+					{{geneDownObj.aveExpr}}
+				      </td>
+				      <td>
+					{{geneDownObj.adjustedPValue}}
+				      </td>				      
+			      
+				    </tr>               
+				   {% endfor %}
+				 </tbody>
+			       </table>		    
+			     </div>
+			     <p>
+				<button type="submit" class="btn btn-primary btn-lg" value = "1" name = "submitScatterPlotButton" id="submitScatterPlotButton-1" onclick = "javascript:submitDownloadDEGData(this);">Download records</button>&nbsp;&nbsp;			     
+			     </p>			     
+			  </div>
+			</div>
+		    </div>
+		    <!-- end down panel -->
+		  </div>
+		  <!-- end panel group -->			  
+	      </div>
+	      <!-- end panel body -->			    
+	  </div>
+      </div>     
+   </div>      
+  {% endfor %}  	      
+      
+   </div>
+  <!--<!-- /.col-lg-12 -->  
+</div>
+<!-- /.row 
+
+
+ 
+</form>
+{% endblock content %}

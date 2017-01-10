@@ -1,0 +1,12 @@
+PASS	Basic Statistics	RLib53_ATCACG_L001_R1_001.bam
+PASS	Per base sequence quality	RLib53_ATCACG_L001_R1_001.bam
+WARN	Per tile sequence quality	RLib53_ATCACG_L001_R1_001.bam
+PASS	Per sequence quality scores	RLib53_ATCACG_L001_R1_001.bam
+FAIL	Per base sequence content	RLib53_ATCACG_L001_R1_001.bam
+PASS	Per sequence GC content	RLib53_ATCACG_L001_R1_001.bam
+PASS	Per base N content	RLib53_ATCACG_L001_R1_001.bam
+WARN	Sequence Length Distribution	RLib53_ATCACG_L001_R1_001.bam
+WARN	Sequence Duplication Levels	RLib53_ATCACG_L001_R1_001.bam
+PASS	Overrepresented sequences	RLib53_ATCACG_L001_R1_001.bam
+PASS	Adapter Content	RLib53_ATCACG_L001_R1_001.bam
+FAIL	Kmer Content	RLib53_ATCACG_L001_R1_001.bam

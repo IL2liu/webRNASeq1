@@ -1,0 +1,12 @@
+PASS	Basic Statistics	EJ42-BL_S9_R1_001.bam
+PASS	Per base sequence quality	EJ42-BL_S9_R1_001.bam
+PASS	Per tile sequence quality	EJ42-BL_S9_R1_001.bam
+PASS	Per sequence quality scores	EJ42-BL_S9_R1_001.bam
+FAIL	Per base sequence content	EJ42-BL_S9_R1_001.bam
+PASS	Per sequence GC content	EJ42-BL_S9_R1_001.bam
+PASS	Per base N content	EJ42-BL_S9_R1_001.bam
+WARN	Sequence Length Distribution	EJ42-BL_S9_R1_001.bam
+PASS	Sequence Duplication Levels	EJ42-BL_S9_R1_001.bam
+PASS	Overrepresented sequences	EJ42-BL_S9_R1_001.bam
+PASS	Adapter Content	EJ42-BL_S9_R1_001.bam
+FAIL	Kmer Content	EJ42-BL_S9_R1_001.bam

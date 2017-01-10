@@ -1,0 +1,12 @@
+PASS	Basic Statistics	GC05-PG_S13_R1_001.bam
+PASS	Per base sequence quality	GC05-PG_S13_R1_001.bam
+PASS	Per tile sequence quality	GC05-PG_S13_R1_001.bam
+PASS	Per sequence quality scores	GC05-PG_S13_R1_001.bam
+FAIL	Per base sequence content	GC05-PG_S13_R1_001.bam
+PASS	Per sequence GC content	GC05-PG_S13_R1_001.bam
+PASS	Per base N content	GC05-PG_S13_R1_001.bam
+WARN	Sequence Length Distribution	GC05-PG_S13_R1_001.bam
+PASS	Sequence Duplication Levels	GC05-PG_S13_R1_001.bam
+PASS	Overrepresented sequences	GC05-PG_S13_R1_001.bam
+PASS	Adapter Content	GC05-PG_S13_R1_001.bam
+FAIL	Kmer Content	GC05-PG_S13_R1_001.bam

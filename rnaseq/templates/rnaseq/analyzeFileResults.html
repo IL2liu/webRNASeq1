@@ -1,0 +1,835 @@
+{% extends "base.html" %}
+{% block css %}
+
+{% endblock css%}
+{% block js %}
+
+<script>
+
+  $(document).ready(function() {
+
+  $('#contrastMatrixTable').DataTable();
+
+  $('#designMatrixTable').DataTable();
+
+  $('#phenotypeFileTable').DataTable();
+
+  {% for contrastObj in contrastObjList%}   
+    
+    $('#geneUpTable-{{forloop.counter0}}').DataTable({'iDisplayLength':100});
+       
+    $('#geneDownTable-{{forloop.counter0}}').DataTable({'iDisplayLength':100});
+    
+  {% endfor %}
+  });
+  
+  function submitRefreshDisplay(obj){
+      
+    $("#contrastResultForm").attr("action","/rnaseq/displayAnalysisDetail/");	      
+      
+    $("#contrastResultForm").submit();
+  } 
+  
+  function downloadNormalizedData(obj){
+      
+    $("#analyzeFileResultsForm").attr("action","/rnaseq/downloadNormalizedData/");	      
+      
+    $("#analyzeFileResultsForm").submit();
+  } 
+  
+  function listAnalyses(obj){
+      
+    $("#analyzeFileResultsForm").attr("action","/rnaseq/listAnalyses/");	      
+      
+    $("#analyzeFileResultsForm").submit();
+  } 
+
+  $(function() {
+   $( "#parameterTabs" ).tabs();
+  });
+  
+  $(function() {
+   $( "#plotTabs" ).tabs();
+  });
+
+  function submitDownloadDEGData(obj){
+  
+       objId = obj.id;
+       
+       values = objId.split("-");
+       
+       upDownFlag = values[1];
+       contrastNum = values[2];
+       
+      $("#upDownFlag").val(upDownFlag);
+
+      $("#contrastNum").val(contrastNum);
+
+      $("#analyzeFileResultsForm").attr("action","/rnaseq/downloadDEGData/");       
+
+      $("#analyzeFileResultsForm").submit();
+  }     
+
+  function submitDownloadData(obj){
+
+      $("#analyzeFileResultsForm").attr("action","/rnaseq/downloadData/");       
+
+      $("#analyzeFileResultsForm").submit();
+  }  
+
+  function submitApplyFilter(obj){
+
+      $("#analyzeFileResultsForm").attr("action","/rnaseq/displayAnalysisDetail/");       
+
+      $("#analyzeFileResultsForm").submit();
+  }  
+
+  function submitCustomGeneList(obj){
+  
+      $("#customGeneListFlag").val("1");  
+
+      $("#analyzeFileResultsForm").attr("action","/rnaseq/displayAnalysisDetail/");       
+
+      $("#analyzeFileResultsForm").submit();
+  }  
+
+</script>
+
+<script type="text/javascript">
+ 
+function mygene_info_get_gene_callback(result){
+    $("#expressionImageDiv").empty();
+    if (result && result.reporter && result.reporter['HuGene-1_1']){
+        var ps_list = result.reporter['HuGene-1_1'];
+        if (!$.isArray(ps_list)){
+            ps_list = [ps_list];
+        }
+        $.each(ps_list, function(i, ps){
+            $("#expressionImageDiv").append('<img src="http://biogps.org/dataset/4/chart/'+ps+'" />');
+        });
+    }
+    else {
+        $("#expressionImageDiv" ).append('<p>No data available for this gene.</p>');
+    }
+}      
+      function showgeneDetails(geneid){
+    var gene_url = 'http://mygene.info/v2/gene/'+geneid+'?fields=reporter&callback=?';
+    $.getJSON(gene_url, mygene_info_get_gene_callback);
+    }
+ 
+  $(document).ready(function() {
+  
+      var queryUpList = [{% for contrastObj in contrastObjList %} {% for geneUpObj in contrastObj.geneUpObjList %}"{{forloop.parentloop.counter0}}-{{geneUpObj.geneId}}",{% endfor %}{% endfor %}];
+      
+      var queryDownList = [{% for contrastObj in contrastObjList %} {% for geneDownObj in contrastObj.geneDownObjList %}"{{forloop.parentloop.counter0}}-{{geneDownObj.geneId}}",{% endfor %}{% endfor %}];
+
+
+      for (i = 0; i < queryUpList.length; i++)
+       {
+	query = queryUpList[i];
+	divName = "geneUp-" + query;
+  
+        data = query.split("-");
+	geneName = data[1];
+	
+	mygene_info_gene_query(geneName, divName);
+	
+      }
+
+
+      for (i = 0; i < queryDownList.length; i++)
+       {
+	query = queryDownList[i];
+	divName = "geneDown-" + query;
+  
+        data = query.split("-");
+	geneName = data[1];
+	
+	mygene_info_gene_query(geneName, divName);
+	
+      }
+function mygene_info_get_gene_callback(result){
+    $("#expressionImageDiv").empty();
+    if (result && result.reporter && result.reporter['Mouse430_2']){
+        var ps_list = result.reporter['Mouse430_2'];
+        if (!$.isArray(ps_list)){
+            ps_list = [ps_list];
+        }
+        $.each(ps_list, function(i, ps){
+            $("#expressionImageDiv").append('<img src="http://biogps.org/dataset/4/chart/'+ps+'" />');
+        });
+    }
+    else {
+        $("#expressionImageDiv" ).append('<p>No data available for this gene.</p>');
+    }
+}
+      
+      function showgeneDetails(geneid){
+    var gene_url = 'http://mygene.info/v2/gene/'+geneid+'?fields=reporter&callback=?';
+    $.getJSON(gene_url, mygene_info_get_gene_callback);
+    }
+
+      function mygene_info_gene_query(geneName, divName){
+
+	  var gene_query_url = 'http://mygene.info/v2/query';
+	  var url = gene_query_url + "?limit=100&callback=?&q=ensemblgene:"+geneName;
+	  
+	  $.getJSON(url, function (result){
+
+		  var html;
+		  $("#" + divName).empty();
+		  if ($.isArray(result.hits)){
+		      <!--alert('<p>Found '+result.total+' matched mouse gene(s).</p>');-->
+		      html = '<p>Found '+result.total+' matched mouse gene(s).</p>';
+		      html = '';
+		      if (result.total > 0){
+			  html += '<table>';
+			  $.each(result.hits, function(i, gene){
+
+			      html += '<tr><td><a href="http://biogps.org/#goto=genereport&id='+gene._id+'" target ="_blank" >' + gene.symbol + '</a></td><td>'+ gene.name + '</td></tr>';
+			  });
+			  html += '</table>';
+		      }
+		  }
+		  else {
+		      var err = result.error || result.reason || "Invalid query!";
+		      <!--html = '<p>Error:<pre>&nbsp;'+err+'</pre></p>';-->
+		  }
+		  
+		  $("#" + divName).html(html);
+		  
+	      }
+	      
+          )
+      };            
+      
+   });     
+
+</script>
+
+{% endblock js %}
+
+{% block content %}
+
+<div class="row">  
+  <!-- panel for sites -->  
+  <div class="col-lg-12">
+
+  </div>
+</div>      
+
+<!-- /.row -->
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Analyze Report</h1>
+    <p>Results of analysis.</p>    
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<form method = "post" id="analyzeFileResultsForm" name="analyzeFileResultsForm" enctype="multipart/form-data" action="/rnaseq/listAnalyses/">
+{% csrf_token %} 
+<input type="hidden" value="{{analysisDetail.id}}" name="analysisDetailId" id ="analysisDetailId"/> 
+<input type="hidden" value="{{upDownFlag}}" name="upDownFlag" id ="upDownFlag"/> 
+<input type="hidden" value="{{contrastNum}}" name="contrastNum" id ="contrastNum"/> 
+<input type="hidden" value="0" name="customGeneListFlag" id ="customGeneListFlag"/> 
+
+<!-- design matrix -->
+ <div class="row">  
+  <!-- panel for sites -->  
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+      	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#detailsPanel">
+	      Details. (Click to toggle this panel.)
+	    </a>
+	  </h4>  
+      </div>
+      <!-- Parameters Used-->
+      <div id="detailsPanel" class="panel-collapse collapse in">
+            <div class="panel-body" >      
+      <div class="panel panel-success" style="overflow-x:auto;">
+	  <div class="panel-heading">
+	      <h4 class="panel-title">
+		  <a data-toggle="collapse" data-parent="#accordion2" href="#parametersPanel">
+		    Parameters&nbsp;(  Please click to toggle this panel. )
+		  </a>
+		</h4>
+	  </div>
+	  <div id="parametersPanel" class="panel-collapse collapse in" style="height:350px;overflow-y:auto;"  -webkit-scrollbar>
+	      <div class="panel-body">
+	      <p>Please click on related tab to see details. </p>
+	      <div id="parameterTabs">
+	      <ul>
+	      <li><a href="#factorsTab">Factors</a></li>
+	      <li><a href="#contrastsTab">Contrasts</a></li>
+	      <li><a href="#designMatrixTab">Design Matrix</a></li>
+	      <li><a href="#contrastMatrixTab">Contrast Matrix</a></li>
+	      <li><a href="#phenotypeFileTab">Phenotype File</a></li>
+	      </ul>
+	      <div id="factorsTab">	      
+
+	       <!-- begin factors table -->
+		<div class="table-responsive">
+		 <table class="table table-striped table-bordered table-hover" id = "factorsTable" >
+		   <thead>
+		     <tr>
+		       <th>Factors</th>
+		      <th>Values</th>
+		      <th>Baseline</th>		      
+		     </tr>
+		   </thead>
+		   <tbody>
+		     {% for designFactorObj in analysisDetailObj.designFactorObjList %}
+		      <tr class="{% cycle 'odd gradeX' 'even gradeC' %}" >				   
+			<td>
+			  {{designFactorObj.designFactor.name}}
+			</td>
+			<td>
+			  {{designFactorObj.designFactorValues}}
+			</td>	
+		      <td>
+			{{designFactorObj.designFactorBaseline}}
+		      </td>				
+		      </tr>				   
+		     {% endfor %}
+		   </tbody>
+		 </table>		    
+	       </div>
+	</div>
+	<div id="contrastsTab">	  
+	       <!-- end factors table -->
+	       <!-- begin contrasts table -->
+		<div class="table-responsive">
+		 <table class="table table-striped table-bordered table-hover" id = "contrastsTable" >
+		   <thead>
+		     <tr>
+		       <th>Contrasts</th>
+		     </tr>
+		   </thead>
+		   <tbody>
+		     {% for limmaContrast in analysisDetailObj.limmaContrasts %}
+		      <tr class="{% cycle 'odd gradeX' 'even gradeC' %}" >				   
+			<td>
+			  {{limmaContrast.name}}
+			</td>
+		      </tr>				   
+		     {% endfor %}
+		   </tbody>
+		 </table>		    
+	       </div>
+	  </div>
+	<div id="designMatrixTab">		  
+	       <!-- end contrasts table -->
+	       <!-- begin design matrix -->
+	      <div class="table-responsive" >
+		<p><b>Design Matrix</b></p>
+		<table id="designMatrixTable" name="designMatrixTable" class="display" cellspacing="0" width="100%" >	  
+		 <thead>
+		    <tr >
+		      {% for matrixColumn in matrixColumns %}		
+			 <th>{{matrixColumn}}</th>
+		      {% endfor %}
+		    </tr>
+		 </thead>
+		 <tbody>
+		 {% for designMatrixRow in designMatrix %}
+		   <tr>
+		      {% for designMatrixColumnValue in designMatrixRow %}		
+			 <th>{{designMatrixColumnValue}}</th>
+		      {% endfor %}		      
+		   </tr>
+		 {% endfor %}
+		 </tbody>
+		</table>
+	      </div>	    
+	  </div>
+	<div id="contrastMatrixTab">	  
+	       <!-- end design matrix -->
+	       <!-- begin contrast matrix -->
+		<div class="table-responsive" >
+		  <p><b>Contrast Matrix</b></p>
+		  
+		  <table id="contrastMatrixTable" name="contrastMatrixTable" class="display" cellspacing="0" width="100%" >	  
+		   <thead>
+		      <tr >
+			{% for matrixColumn in contrastMatrixColumns %}		
+			   <th>{{matrixColumn}}</th>
+			{% endfor %}
+		      </tr>
+		   </thead>
+		   <tbody>
+		   {% for contrastMatrixRowObj in contrastMatrixRowObjList %}
+		     <tr>
+			{% for contrastMatrixColumnValue in contrastMatrixRowObj.contrastMatrixRow %}		
+			   <td>{{contrastMatrixColumnValue}}</td>
+			{% endfor %}		      
+		     </tr>
+		   {% endfor %}
+		   </tbody>
+		  </table>
+		  
+		</div>
+	  </div>
+	<!--</div> <!-- end tabs div>-->
+	<div id="phenotypeFileTab">	  
+	       <!-- end design matrix -->
+	       <!-- begin phenotype file matrix -->
+		<div class="table-responsive" >
+		  <p><b>Phenotype file</b></p>
+		  
+		  <table id="phenotypeFileTable" name="phenotypeFileTable" class="display" cellspacing="0" width="100%" >	  
+		   <thead>
+		      <tr >
+			{% for column in phenotypeFileObj.fileColumns %}		
+			   <th>{{column}}</th>
+			{% endfor %}
+		      </tr>
+		   </thead>
+		   <tbody>
+		   {% for rowValues in phenotypeFileObj.fileRows %}
+		     <tr>
+			{% for rowValue in rowValues %}		
+			   <td>{{rowValue}}</td>
+			{% endfor %}		      
+		     </tr>
+		   {% endfor %}
+		   </tbody>
+		  </table>
+		  
+		</div>
+	  </div>
+	</div> <!-- end tabs div>-->
+	       <!-- end contrast matrix -->
+	     </div>
+	  </div>
+      </div>
+      <!-- end up panel -->
+      <!-- Up regulated heatmap panel -->
+      <div class="panel panel-success" style="overflow-x:auto;">
+	  <div class="panel-heading">
+	      <h4 class="panel-title">
+		  <a data-toggle="collapse" data-parent="#accordion2" href="#plotPanel">
+		    Plots&nbsp;(  Please click to toggle this panel. )
+		  </a>
+		</h4>
+	  </div>
+	  <div id="plotPanel" class="panel-collapse collapse in" style="height:350px;overflow-y:auto;"  -webkit-scrollbar>
+	      <div class="panel-body">
+	      
+		<div id="plotTabs">
+		  <ul>
+		  {% for plotObj in plotObjList %}
+  
+		    <li><a href="#plotTab-{{forloop.counter0}}">{{plotObj.plotName}}</a></li>
+  
+		  {% endfor %}
+  
+		  </ul>
+		  {% for plotObj in plotObjList %}
+  
+		    <div id="plotTab-{{forloop.counter0}}">	
+
+		      <p>
+			<img src = "/static/img/plots/{{plotObj.plotLabel}}.png" width="550px" height="300px"/> 
+		      </p>
+		      <!--<p class="text-center">-->
+			 <!--<button type="submit" class="btn btn-primary btn-lg" value = "0" name = "downloadImageButton" id="downloadImageButton" onclick = "javascript:downloadImage(this)";>Download Image</button>-->
+		      <!--</p>-->
+		    </div>
+  
+		  {% endfor %}
+		  
+		</div>
+
+	     </div>
+	  </div>
+      </div>
+    <!-- end up panel -->
+   </div>
+ </div>
+</div> 
+ <div class="row">  
+  <!-- panel for sites -->  
+  <div class="col-lg-12">
+      
+    <!-- Example row of columns -->   
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+	<h4 class="panel-title">
+	  <a data-toggle="collapse" data-parent="#panels1" href="#contrastListPanel">
+	     List of Contrasts </b>&nbsp;( Please click to toggle this panel. )
+	  </a>
+	</h4>
+      </div>
+      <div id="contrastListPanel" class="panel-collapse collapse in">
+            <div class="panel-body" >
+      <br/>
+      <p>The up and down regulated genes for each contrast are shown below. This list is filtered based on the cutoff pValues and log fold change. Default values are used for the filter. If you wish a to use a different set of filter values, please enter them below and refresh the list by clicking the submit button at the bottom of the screen.</p>
+
+      <p>For each gene, the details, if available, will be fetched from the <a href = "http://mygene.info" target="_blank">mygene info</a> service. Information will be automatically updated in a text panel below each gene after the page has finished loading.</p>      
+	  
+      {% for contrastObj in contrastObjList%}   
+      
+      <div class="panel-group" id="accordion1">
+        <div class="panel panel-warning">
+	    <div class="panel-heading">
+	         <h4 class="panel-title">
+	  	   <a data-toggle="collapse" data-parent="#accordion3" href="#contrastPanel-{{forloop.counter0}}">
+	  	   {{ contrastObj.contrast }} </b>&nbsp;(  Please click to toggle this panel. )
+	  	   </a>
+	         </h4>
+	    </div>
+	    <div id="contrastPanel-{{forloop.counter0}}" class="panel-collapse collapse in">
+	      <div class="panel-body">	      
+		  <div class="panel-group" id="accordion2">
+		    <!-- start up panel -->
+		    <div class="panel panel-success" style="overflow-x:auto;">
+			<div class="panel-heading">
+			    <h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion2" href="#contrastsUpPanel-{{forloop.counter0}}">
+				  Up Regulated Genes &nbsp;(  Please click to toggle this panel. )
+				</a>
+			      </h4>
+			</div>
+			<div id="contrastsUpPanel-{{forloop.counter0}}" class="panel-collapse collapse in" style="height:400px;overflow-y:auto;"  -webkit-scrollbar>
+			    <div class="panel-body">
+			      <p>&nbsp;</p>
+      
+			      <div class="form-group">
+				<div class="text">
+				  <label>
+				    <b>CutOff pValue:&nbsp;</b>
+				  </label>
+				  <input type="text" id ="cutOffUpPValue-{{forloop.counter0}}" name ="cutOffUpPValue-{{forloop.counter0}}" value="{{contrastObj.cutOffUpPValue}}" />
+				</div>
+				<p class="help-block">Please select cutoff pValue to filter lists below.</p>
+			      </div>
+			
+			      <div class="form-group">
+				<div class="text">
+				  <label>
+				    <b>CutOff log FC:&nbsp;</b>
+				  </label>
+				  <input type="text" id ="cutOffUpLogFC-{{forloop.counter0}}" name ="cutOffUpLogFC-{{forloop.counter0}}" value="{{contrastObj.cutOffUpLogFC}}" />
+				</div>
+				<p class="help-block">Please select cutoff logFC to filter lists below.</p>
+			      </div>	
+			      
+			     <p>
+				<button type="submit" class="btn btn-primary btn-lg" value = "1" name = "applyFilterButton-{{forloop.counter0}}" id="applyFilterButton--{{forloop.counter0}}" onclick = "javascript:submitApplyFilter(this);">Apply Filter</button>&nbsp;&nbsp;				     
+				<button type="submit" class="btn btn-primary btn-lg" value = "0" name = "submitDownloadDEGButton" id="submitDownloadDEGButton-0-{{forloop.counter0}}" onclick = "javascript:submitDownloadDEGData(this);" >Download Filtered Records</button>&nbsp;&nbsp;			     
+			     </p>			      
+			
+			      <div class="table-responsive">
+			       <table class="table table-striped table-bordered table-hover" id = "geneUpTable-{{forloop.counter0}}" >
+				 <thead>
+				   <tr>
+				     <th>Gene Name</th>
+				     <th>Log FC (Limma)</th>
+				     <th>Avg Expr (Limma)</th>	
+				     <th>P Value (Limma)</th>					     
+				     <th>Adj. P Value (Limma)</th>	
+				   </tr>
+				 </thead>
+				 <tbody>
+				   {% for geneUpObj in contrastObj.geneUpObjList %}
+				    <tr class="{% cycle 'odd gradeX' 'even gradeC' %}" >				   
+				      <td>
+					{{geneUpObj.geneId}}
+					<br/>
+					  <div style="height:50px;overflow-y:auto;" id = "geneUp-{{forloop.parentloop.counter0}}-{{geneUpObj.geneId}}" name = "geneUp-{{forloop.parentloop.counter0}}-{{geneUpObj.geneId}}"></div>
+				      </td>
+				      <td>
+					{{geneUpObj.logFC}}
+				      </td>
+				      <td>
+					{{geneUpObj.aveExpr}}
+				      </td>
+				      <td>
+					{{geneUpObj.pValue}}
+				      </td>	
+				      <td>
+					{{geneUpObj.adjustedPValue}}
+				      </td>				      
+				    </tr>				   
+				   {% endfor %}
+				 </tbody>
+			       </table>		    
+			     </div>
+
+			   </div>
+			</div>
+			
+		    </div>
+		    <!-- end up panel -->
+		    <!-- start down panel -->
+		    <div class="panel panel-danger" style="overflow-x:auto;">
+			<div class="panel-heading">
+			    <h4 class="panel-title">
+			      <a data-toggle="collapse" data-parent="#accordion2" href="#contrastsDownPanel-{{forloop.counter0}}">            
+				  Down Regulated Genes &nbsp;(  Please click to toggle this panel. )
+			      </a>
+			    </h4>
+			</div>
+			<div id="contrastsDownPanel-{{forloop.counter0}}" class="panel-collapse collapse in" style="height:400px;overflow-y:auto;"  -webkit-scrollbar>
+			  <div class="panel-body"> 
+			      <p>&nbsp;</p>
+      
+			      <div class="form-group">
+				<div class="text">
+				  <label>
+				    <b>CutOff pValue:&nbsp;</b>
+				  </label>
+				  <input type="text" id ="cutOffDownPValue-{{forloop.counter0}}" name ="cutOffDownPValue-{{forloop.counter0}}" value="{{contrastObj.cutOffDownPValue}}" />
+				</div>
+				<p class="help-block">Please select cutoff pValue to filter lists below.</p>
+			      </div>
+			
+			      <div class="form-group">
+				<div class="text">
+				  <label>
+				    <b>CutOff log FC:&nbsp;</b>
+				  </label>
+				  <input type="text" id ="cutOffDownLogFC-{{forloop.counter0}}" name ="cutOffDownLogFC-{{forloop.counter0}}" value="{{contrastObj.cutOffDownLogFC}}" />
+				</div>
+				<p class="help-block">Please select cutoff logFC to filter lists below.</p>
+			      </div>
+			      
+			     <p>
+				<button type="submit" class="btn btn-primary btn-lg" value = "1" name = "applyFilterButton-1" id="applyFilterButton-1-{{forloop.counter0}}" onclick = "javascript:submitApplyFilter(this);">Apply Filter</button>&nbsp;&nbsp;				     
+				<button type="submit" class="btn btn-primary btn-lg" value = "0" name = "submitDownloadDEGButton" id="submitDownloadDEGButton-1-{{forloop.counter0}}" onclick = "javascript:submitDownloadDEGData(this);" >Download Filtered Records</button>&nbsp;&nbsp;			     
+			     </p>	
+			     
+			      <div class="table-responsive">
+			       <table class="table table-striped table-bordered table-hover" id = "geneDownTable-{{forloop.counter0}}" >
+				 <thead>
+				   <tr>
+				     <th>Gene Name</th>
+				     <th>Log FC (Limma)</th>
+				     <th>Avg Expr (Limma)</th>	
+				     <th>P Value (Limma)</th>	
+				     <th>Adj. P Value (Limma)</th>	
+				   </tr>
+				 </thead>
+				 <tbody>
+				   {% for geneDownObj in contrastObj.geneDownObjList %}
+				    <tr class="{% cycle 'odd gradeX' 'even gradeC' %}" >				   
+				 
+				      <td>{{geneDownObj.geneId}}
+					<br/>
+					  <div style="height:50px;overflow-y:auto;" id = "geneDown-{{forloop.parentloop.counter0}}-{{geneDownObj.geneId}}" name = "geneDown-{{forloop.parentloop.counter0}}-{{geneDownObj.geneId}}">
+					  </div>				      
+				      </td>
+			      
+				      <td>
+					{{geneDownObj.logFC}}
+				      </td>
+				      <td>
+					{{geneDownObj.aveExpr}}
+				      </td>
+				      <td>
+					{{geneDownObj.pValue}}
+				      </td>				      
+				      <td>
+					{{geneDownObj.adjustedPValue}}
+				      </td>				      
+				    </tr>               
+				   {% endfor %}
+				 </tbody>
+			       </table>		    
+			     </div>
+			  </div>
+			</div>
+
+		    </div>
+		    <!-- end down panel -->
+		    
+		    <!-- start scatter panel -->
+		    <div class="panel panel-success" style="overflow-x:auto;">
+			<div class="panel-heading">
+			    <h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion2" href="#contrastsScatterPanel-{{forloop.counter0}}">
+				  Scatter Plots &nbsp;(  Please click to toggle this panel. )
+				</a>
+			      </h4>
+			</div>
+			<div id="contrastsScatterPanel-{{forloop.counter0}}" class="panel-collapse collapse in" style="height:600px;overflow-y:auto;"  -webkit-scrollbar>
+			    <div class="panel-body">
+			      <p>&nbsp;</p>
+                            
+			      <p>
+
+			      {{ contrastObj.bokehPlotScript | safe }}
+					  <div class="bokeh_plots" id="bokehPlot-{{contrastObj.contrast}}">
+					    {{ contrastObj.bokehPlotDiv | safe }}
+					  </div> <!-- #bokeh_plots -->
+			      
+
+			      </p>
+			      
+			      <p>
+				<img src = "/static/img/plots/{{contrastObj.scatterPlotName}}.png" width="750px" height="600px"/>
+			      </p> 			      
+			   </div>
+			</div>
+		    </div>
+		    <!-- end scatter panel -->		    
+		    
+		    <!-- start heatmap panel -->
+		    <div class="panel panel-success" style="overflow-x:auto;">
+			<div class="panel-heading">
+			    <h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion2" href="#contrastsHeatMapPanel-{{forloop.counter0}}">
+				  Heat Maps / Cluster Plots &nbsp;(  Please click to toggle this panel. )
+				</a>
+			      </h4>
+			</div>
+			<div id="contrastsHeatMapPanel-{{forloop.counter0}}" class="panel-collapse collapse in" style="height:600px;overflow-y:auto;"  -webkit-scrollbar>
+			    <div class="panel-body">
+			      <p>&nbsp;</p>
+                            
+			      <p>
+				<img src = "/static/img/plots/{{contrastObj.clusterMapName}}.png" width="800px" height="650px"/>
+			      </p> 			      
+			   </div>
+			</div>
+		    </div>
+		    <!-- end scatter panel -->	
+
+		    <div class="form-group">
+		      <div class="text">
+			<label>
+			  <b>Enter custom list:&nbsp;</b>
+			</label>
+			<input  class="form-control" type="file" id ="customGeneListFile-{{forloop.counter0}}" name ="customGeneListFile-{{forloop.counter0}}" value="" />
+		      </div>
+		      <p class="help-block">Please upload custom list for heatmap.</p>
+		    </div>	
+		    
+		   <p>
+		      <button type="submit" class="btn btn-primary btn-lg" value = "1" name = "submitCustomGeneListButton-{{forloop.counter0}}" id="submitCustomGeneListButton--{{forloop.counter0}}" onclick = "javascript:submitCustomGeneList(this);">Draw ClusterMap</button>			     
+		   </p>			      		    
+
+                   </div>
+		  <!-- end contrast panel -->		    
+
+		  </div>
+		  <!-- end panel group -->			  
+	      </div>
+	      <!-- end panel body -->			    
+	  </div>
+      </div>     
+   <!--</div>      -->
+  {% endfor %}  	      
+      
+   </div>
+  <!--<!-- /.col-lg-12 -->  
+</div>
+</div>
+<!--<!-- /.row -->
+
+<!--<!-- download panel -->
+ <div class="row">  
+  <!-- panel for sites -->  
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+      	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#downloadPanel">
+	      Download Panel. (Click to toggle this panel.)
+	    </a>
+	  </h4>  
+      </div>
+      <!-- /.panel-heading -->
+       <div id="downloadPanel" class="panel-collapse collapse in" >      
+      <div class="panel-body" style="overflow-y:auto;height:580px;" -webkit-scrollbar>
+
+        <div class="table-responsive" >
+	  
+	  <p>Selected data will be downloaded in a zipped file. Please note that if the QC data is downloaded, it will take extra time to download.</p>
+
+	  <div class="form-group">
+	    <div class="checkbox">
+	      <label>
+		<input type="checkbox" value="1" name="downloadCountsMatrix" id="downloadCountsMatrix" checked ></input><b>Download Counts Matrix.</b>
+	      </label>
+	    </div>
+	    <p class="help-block">Download Counts Matrix.</p>
+	  </div> 	
+
+	  <div class="form-group">
+	    <div class="checkbox">
+	      <label>
+		<input type="checkbox" value="1" name="downloadQCData" id="downloadQCData" checked></input><b>Download QC Data.</b>
+	      </label>
+	    </div>
+	    <p class="help-block">Download QC Data.</p>
+	  </div> 	
+
+	  <div class="form-group">
+	    <div class="checkbox">
+	      <label>
+		<input type="checkbox" value="1" name="downloadPhenotypeFile" id="downloadPhenotypeFile" checked></input><b>Download Phenotype File.</b>
+	      </label>
+	    </div>
+	    <p class="help-block">Download Phenotype File.</p>
+	  </div> 	
+
+	  <div class="form-group">
+	    <div class="checkbox">
+	      <label>
+		<input type="checkbox" value="1" name="downloadDesignMatrix" id="downloadDesignMatrix" checked></input><b>Download Design Matrix.</b>
+	      </label>
+	    </div>
+	    <p class="help-block">Download Design Matrix.</p>
+	  </div> 	
+
+	  <div class="form-group">
+	    <div class="checkbox">
+	      <label>
+		<input type="checkbox" value="1" name="downloadCountsMatrix" id="downloadCountsMatrix" checked></input><b>Download Counts Matrix.</b>
+	      </label>
+	    </div>
+	    <p class="help-block">Download Contrasts Matrix.</p>
+	  </div> 	
+
+	  <div class="form-group">
+	    <div class="checkbox">
+	      <label>
+		<input type="checkbox" value="1" name="downloadNormalizedData" id="downloadNormalizedData" checked></input><b>Download Normalized Data.</b>
+	      </label>
+	    </div>
+	    <p class="help-block">Download Normalized Data.</p>
+	  </div> 	
+	  
+	  <div class="form-group">
+	    <div class="checkbox">
+	      <label>
+		<input type="checkbox" value="1" name="downloadTopTableResults" id="downloadTopTableResults" checked></input><b>Download the TopTable Results.</b>
+	      </label>
+	    </div>
+	    <p class="help-block">Download Top Table Results.</p>
+	  </div> 	
+
+	  <button type="submit" class="btn btn-primary btn-lg" value = "0" name = "analyzeFileDownloadSubmitButton" id="analyzeFileDownloadSubmitButton" onclick = "javascript:submitDownloadData(this);">Download Data</button>
+        </div>
+        <!-- /.table-responsive -->
+       </div>
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /. row -->
+<!--<p>-->
+    <!--<button type="submit" class="btn btn-primary btn-lg" value = "0" name = "analyzeFileListAnalysisButton" id="analyzeFileListAnalysisButton" onclick = "javascript:listAnalyses(this);" > List Past Analyses</button>-->
+<!--</p>-->
+ <p>*
+ <div id = "expressionImageDiv" width = "400px;" height = "400px;"/>
+</p>
+</form>
+{% endblock content %}

@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+{% block css %}
+<!--<link rel="stylesheet" type="text/css" href="/static/css/default.css">-->
+<!-- <link rel="stylesheet" type="text/css" href="/static/css/nouislider.css"> -->
+<!-- div.demo { padding: 10px !important; }; -->
+{% endblock css%}
+{% block js %}
+
+{% for bokehPlotObj in bokehPlotObjList %}
+
+{{ bokehPlotObj.plotScript | safe }}
+
+{% endfor %}
+
+<script type="text/javascript">
+  $(document).ready(function() {
+  
+   <!--$('#onlyDRGenesTable').DataTable();-->
+
+   $('#compareTable').DataTable();   
+
+   <!--$('#drVGLUTGenesTable').DataTable();   -->
+   <!--$('#drVgatGenesTable').DataTable();   -->
+   
+   <!--$('#VgatVGLUTGenesTable').DataTable();      -->
+
+   <!--<!--$('#combinedDataTable').DataTable();-->-->
+
+  } );
+
+</script>
+
+{% endblock js %}
+
+{% block content %}
+
+<form method = "post" id = "submitDorsalRapheForm" name = "submitDorsalRapheForm" action="/pathway/submitDorsalRaphePlots/">
+ {% csrf_token %} 
+
+<input type="hidden" value="{{analysisDetailId}}" name="analysisDetailId" id ="analysisDetailId"/>
+
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Dorsal Raphe Comparison Results</h1>
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+ <div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#parametersPanel">
+	      Parameters. (Click to toggle this panel.)
+	    </a>
+	  </h4>        
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" >
+	<div id="parametersPanel" class="panel-collapse collapse" >
+
+      	  <p class="text-center">
+
+	      <div class="form-group">
+		<div class="text">
+		  <label>
+		    <b>P Value Vgat:&nbsp;</b>
+		  </label>
+		  <input type = "text" id ="pValVgat" name ="pValVgat" value="{{pValVgat}}" width = "200px;" >
+		</div>
+		<p class="help-block">Please enter cut off adjusted p value for Vgat.</p>
+	      </div> 	  
+    
+	      <div class="form-group">
+		<div class="text">
+		  <label>
+		    <b>Gene List Vgat:&nbsp;</b>
+		  </label>
+		  <input type = "text" id ="geneListVgat" name ="geneListVgat" value="{{geneListVgat}}" width = "200px;" >
+		</div>
+		<p class="help-block">Annotate list for vgat genes.</p>
+	      </div> 	  
+    
+	      <div class="form-group">
+		<div class="text">
+		  <label>
+		    <b>P Value Vglut:&nbsp;</b>
+		  </label>
+		  <input type = "text" id ="pValVglut" name ="pValVglut" value="{{pValVglut}}" width = "200px;" >
+		</div>
+		<p class="help-block">Please enter cut off adjusted p value for Vglut.</p>
+	      </div> 	  
+    
+	      <div class="form-group">
+		<div class="text">
+		  <label>
+		    <b>Gene List Vglut:&nbsp;</b>
+		  </label>
+		  <input type = "text" id ="geneListVglut" name ="geneListVglut" value="{{geneListVglut}}" width = "200px;" >
+		</div>
+		<p class="help-block">Annotate list for vglut genes.</p>
+	      </div> 	  
+    
+	      <div class="form-group">
+		<div class="text">
+		  <label>
+		    <b>Adj P Value Vgat Vglut IP:&nbsp;</b>
+		  </label>
+		  <input type = "text" id ="adjPValVgatVglutIP" name ="adjPValVgatVglutIP" value="{{adjPValVgatVglutIP}}" width = "200px;" >
+		</div>
+		<p class="help-block">Please enter cut off adjusted p value for Vgat Vglut IP.</p>
+	      </div> 	  
+    
+	      <div class="form-group">
+		<div class="text">
+		  <label>
+		    <b>Gene List Vgat Vglut IP:&nbsp;</b>
+		  </label>
+		  <input type = "text" id ="geneListVgatVglutIP" name ="geneListVgatVglutIP" value="{{geneListVgatVglutIP}}" width = "200px;" >
+		</div>
+		<p class="help-block">Annotate list for vgat vglut IP genes.</p>
+	      </div> 
+	      
+	      <div class="form-group">
+		<div class="text">
+		  <label>
+		    <b>Adj P Value Vgat Vglut FC:&nbsp;</b>
+		  </label>
+		  <input type = "text" id ="adjPValVgatVglutFC" name ="adjPValVgatVglutFC" value="{{adjPValVgatVglutFC}}" width = "200px;" >
+		</div>
+		<p class="help-block">Please enter cut off adjusted p value for Vgat Vglut FC.</p>
+	      </div> 	  
+    
+	      <div class="form-group">
+		<div class="text">
+		  <label>
+		    <b>Gene List Vgat Vglut FC:&nbsp;</b>
+		  </label>
+		  <input type = "text" id ="geneListVgatVglutFC" name ="geneListVgatVglutFC" value="{{geneListVgatVglutFC}}" width = "200px;" >
+		</div>
+		<p class="help-block">Annotate list for vgat vglut FC genes.</p>
+	      </div> 	  
+	  </p>       
+	</div>
+      </div>
+      <!-- /.panel-body -->
+    </div>
+  </div>  
+  <!--<!-- /.col-lg-12 -->  
+</div>
+<!--</div>-->
+
+ <div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#plotsPanel">
+	      Plots. (Click to toggle this panel.)
+	    </a>
+	  </h4>        
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" >
+	<div id="plotsPanel" class="panel-collapse collapse in" >
+	
+	  {% for plotName in plotNameList %}
+
+	  <p>
+	    <img src = "/static/img/plots/{{plotName}}" width="550px" height="300px"/> 
+	  </p>     
+	  
+	  {% endfor %}
+       
+	</div>
+      </div>
+      <!-- /.panel-body -->
+    </div>
+  </div>  
+  <!--<!-- /.col-lg-12 -->  
+</div>
+<!--</div>-->
+
+ <div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#javascriptPlotsPanel">
+	      Javascript Plots. (Click to toggle this panel.)
+	    </a>
+	  </h4>        
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" >
+	<div id="plotsPanel" class="panel-collapse collapse in" >
+{% for bokehPlotObj in bokehPlotObjList %}
+
+	    <div class="bokeh_plots" id="bokehPlot-{{bokehPlotObj.plotName}}">
+	      {{ bokehPlotObj.plotDiv | safe }}
+	    </div> <!-- #bokeh_plots -->
+
+{% endfor %}
+	
+
+		      
+	</div>
+      </div>
+      <!-- /.panel-body -->
+    </div>
+  </div>  
+  <!--<!-- /.col-lg-12 -->  
+</div>
+</div>
+
+ <p class="text-center">
+
+  <button type="submit" class="btn btn-primary btn-lg" value = "0" name = "submitButton" id="submitButton-0" >Submit</button>&nbsp;&nbsp;&nbsp;
+
+ </p> 
+</form>
+{% endblock content %}

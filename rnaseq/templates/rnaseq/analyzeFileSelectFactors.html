@@ -1,0 +1,371 @@
+{% extends "base.html" %}
+{% block css %}
+<!--<link rel="stylesheet" type="text/css" href="/static/css/default.css">-->
+<!-- <link rel="stylesheet" type="text/css" href="/static/css/nouislider.css"> -->
+<!-- div.demo { padding: 10px !important; }; -->
+{% endblock css%}
+{% block js %}
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+
+    $('#factorsTable').DataTable({paging:false});
+    
+    $('#designMatrixTable').DataTable({paging:false});
+
+    $('#singleContrastSelectTable').DataTable({paging:false});
+
+    $('#doubleContrastSelectTable').DataTable({paging:false});
+
+    $('#contrastMatchTable').DataTable({paging:false});
+    
+  });
+  
+  function submitAnalyzeFileForm(obj){
+  
+    checkedFlag = false;
+
+    {% for contrastString, firstContrast, secondContrast in singleContrasts %}
+
+      if ($("#singleContrastString-{{forloop.counter0}}").is(':checked')) {
+      
+          checkedFlag = true;
+      
+      }
+    
+    {% endfor %}
+
+    {% for contrastString, firstContrast, secondContrast in doubleContrasts %}
+
+      if ($("#doubleContrastString-{{forloop.counter0}}").is(':checked')) {
+      
+          checkedFlag = true;
+      
+      }
+    
+    {% endfor %}
+    
+    if (checkedFlag) {
+
+        $("#analyzeFileSelectFactorsForm").submit();
+    
+        return true;
+	
+    } else {
+    
+        alert("At least one contrast must be selected.")    
+    
+        return false;    
+    
+    }
+  }
+  
+  $(function() {
+   $( "#phenotypeInfoTabs" ).tabs();
+  }); 
+
+</script>
+
+{% endblock js %}
+
+{% block content %}
+<form method = "post" id="analyzeFileSelectFactorsForm" name="analyzeFileSelectFactorsForm" action="/rnaseq/showPlots/" >
+ {% csrf_token %} 
+ <input type="hidden" value="{{dataFile.id}}" name="dataFileId" id ="dataFileId"/> 
+ <input type="hidden" value="{{phenotypeFile.id}}" name="phenotypeFileId" id ="phenotypeFileId"/> 
+
+{% for baseline in baselines %} 
+ <input type="hidden" value="{{baseline}}" name="baseline" id ="baseline"/> 
+{% endfor %}
+ 
+{% for phenotypeColumn in phenotypeColumns %} 
+ <input type="hidden" value="{{phenotypeColumn}}" name="phenotypeColumn" id ="phenotypeColumn"/> 
+{% endfor %}
+
+{% for columnTypeId in columnTypeIds %} 
+ <input type="hidden" value="{{columnTypeId}}" name="columnTypeId" id ="columnTypeId"/> 
+{% endfor %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Select contrasts for project {{dataFile.project.name}}</h1>
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- factors -->
+ <div class="row">  
+  <!-- panel for sites -->  
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+      	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#phenotypeInfoPanel">
+	      Design Matrix and Factors. (Click to toggle this panel.)
+	    </a>
+	  </h4>  
+      </div>
+      <!-- /.panel-heading -->
+       <div id="phenotypeInfoPanel" class="panel-collapse collapse in" style="overflow-y:auto;height:300px;" -webkit-scrollbar>      
+
+      <div class="panel-body" >
+
+	<div id="phenotypeInfoTabs">       
+       
+	  <ul>
+	  
+	    <li><a href="#designMatrixTab">Design Matrix</a></li>
+	  
+	    <li><a href="#factorsTab">Factors</a></li>
+
+	  </ul>       
+       
+      <div id="factorsTab">       
+       
+        <div class="table-responsive" >
+	  <p>Factors</p>
+	  <table id="factorsTable" name="factorsTable" class="display" cellspacing="0" width="100%" >	  
+	    <thead>
+	      <tr>
+		<th>Factors</th>
+	       <th>Values</th>
+	       <th>Baseline</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      {% for designFactorObj in designFactorObjList %}
+	       <tr class="{% cycle 'odd gradeX' 'even gradeC' %}" >				   
+		 <td>
+		   {{designFactorObj.designFactorName}}
+		 </td>
+		 <td>
+		   {{designFactorObj.designFactorValues}}
+		 </td>			
+		 <td>
+		   {{designFactorObj.designFactorBaseline}}
+		 </td>			
+	       </tr>				   
+	      {% endfor %}
+	    </tbody>
+	  </table>		    	  
+        </div>
+        <!-- /.table-responsive -->
+        </div>
+        <!-- /.factors tab -->
+
+      <div id="designMatrixTab">       
+              
+        <div class="table-responsive" >
+	  <table id="designMatrixTable" name="designMatrixTable" class="display" cellspacing="0" width="100%" >	  
+	   <thead>
+	      <tr >
+		{% for matrixColumn in matrixColumns %}		
+		   <th>{{matrixColumn}}</th>
+		{% endfor %}
+              </tr>
+           </thead>
+           <tbody>
+           {% for designMatrixRow in designMatrix %}
+             <tr>
+		{% for designMatrixColumnValue in designMatrixRow %}		
+		   <th>{{designMatrixColumnValue}}</th>
+		{% endfor %}		      
+             </tr>
+           {% endfor %}
+           </tbody>
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+
+       </div>	
+	<!-- design matrix tab -->
+	</div>
+	<!-- end tabs -->
+       </div>
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /. row -->
+<!-- contrast matrix -->
+ <div class="row">  
+  <!-- panel for sites -->  
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+      	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#contrastSelectPanel">
+	      Select Single Contrasts. (Click to toggle this panel.)
+	    </a>
+	  </h4>  
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" style="overflow-y:auto;height:300px;" -webkit-scrollbar>
+       <div id="contrastSelectPanel" class="panel-collapse collapse in" >      
+        <div class="table-responsive" >
+	  <table id="singleContrastSelectTable" name="singleContrastSelectTable" class="display" cellspacing="0" width="100%" >	  
+	   <thead>
+	      <tr >
+		<th>Select</th>
+		<th>Numerator</th>
+		<th>Denominator</th>
+		<th>Contrast</th>
+              </tr>
+           </thead>
+           <tbody>
+           {% for contrastString, firstContrast, secondContrast in singleContrasts %}
+             <tr>
+
+	       <input type = "hidden" id = "singleFirstContrast" name = "singleFirstContrast" value="{{firstContrast}}"/>	     
+	       <input type = "hidden" id = "singleSecondContrast" name = "singleSecondContrast" value="{{secondContrast}}"/>	     
+
+	       <th><input type = "checkbox" name = "singleContrastString" id = "singleContrastString-{{forloop.counter0}}" value = "{{contrastString}}" /></td>
+	       
+	       <th>{{firstContrast}}</th>
+	       <th>{{secondContrast}}</th>
+	       <th>{{contrastString}}</th>
+	       
+             </tr>
+           {% endfor %}
+           </tbody>
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+       </div>
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /. row -->
+
+<!-- design matrix -->
+ <div class="row">  
+  <!-- panel for sites -->  
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+      	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#otherContrastSelectPanel">
+	      Select Paired Contrasts. (Click to toggle this panel.)
+	    </a>
+	  </h4>  
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" style="overflow-y:auto;height:300px;" -webkit-scrollbar>
+       <div id="otherContrastSelectPanel" class="panel-collapse collapse in" >    
+        <div class="table-responsive" >
+	  <table id="doubleContrastSelectTable" name="doubleContrastSelectTable" class="display" cellspacing="0" width="100%" >	  
+	   <thead>
+	      <tr >
+		<th>Select</th>
+		<th>Numerator</th>
+		<th>Denominator</th>
+		<th>Contrast</th>
+
+              </tr>
+           </thead>
+           <tbody>
+	   
+           {% for contrastString, firstContrast, secondContrast in doubleContrasts %}
+             <tr>
+	       <input type = "hidden" id = "doubleFirstContrast" name = "doubleFirstContrast" value="{{firstContrast}}"/>	     
+	       <input type = "hidden" id = "doubleSecondContrast" name = "doubleSecondContrast" value="{{secondContrast}}"/>	   
+	     
+	       <th><input type = "checkbox" name = "doubleContrastString" id = "doubleContrastString-{{forloop.counter0}}" value = "{{contrastString}}" /></td>
+	       
+	       <th>{{firstContrast}}</th>
+	       <th>{{secondContrast}}</th>
+	       <th>{{contrastString}}</th>
+	       
+             </tr>
+           {% endfor %}
+           </tbody>
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+       </div>
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /. row -->
+
+<!-- design matrix -->
+ <div class="row">  
+  <!-- panel for sites -->  
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+      	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#columnMatchPanel">
+	      Match columns of contrast matrix and sample names. (Click to toggle this panel.)
+	    </a>
+	  </h4>  
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" style="overflow-y:auto;height:600px;" -webkit-scrollbar>
+       <div id="columnMatchPanel" class="panel-collapse collapse in" >  
+        <p>Please match the phenotype column labels with column headers in the data. If no match is found, please do not select any value in the dropdown list.</p>       
+        <div class="table-responsive" >
+	  <p>Contrasts</p>
+	  <table id="contrastMatchTable" name="contrastMatchTable" class="display" cellspacing="0" width="100%" >	  
+	   <thead>
+	      <tr >
+		<th>Contrast Column</th>
+		<th>Sample Name</th>
+              </tr>
+           </thead>
+           <tbody>
+           {% for matrixColumnMatchObj in matrixColumnMatchObjList %}
+	     
+             <tr>
+	       <td>
+	        <input type = "hidden" id = "sampleName-{{forloop.counter0}}" name = "sampleName-{{forloop.counter0}}" value = "{{matrixColumnMatchObj.selectedSampleName}}"/>
+	         {{matrixColumnMatchObj.selectedSampleName}}
+	       </td>
+	       <td>
+		<select id = "dataMatrixColumn-{{forloop.counter0}}" name = "dataMatrixColumn-{{forloop.counter0}}" value="">
+		     <option id = "dataMatrixColumnOptionDefault" name = "dataMatrixColumnOptionDefault" value="">--Select Matching Column--</option>
+		   {% for dataMatrixColumn in matrixColumnMatchObj.dataMatrixColumns%}
+		     <option id = "dataMatrixColumnOption-{{forloop.counter0}}" name = "dataMatrixColumnOption-{{forloop.counter0}}" value="{{dataMatrixColumn}}" {% if dataMatrixColumn == matrixColumnMatchObj.selectedMatrixColumn %} selected {% endif %}>{{dataMatrixColumn}}</option>
+		   {% endfor %}
+		 </select>
+	       </td>
+             </tr>
+           {% endfor %}
+           </tbody>
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+       </div>
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /. row -->
+
+<p class="text-center">
+   <button type="button" class="btn btn-primary btn-lg" value = "0" name = "analyzeFileSelectFactorSubmitButton" id="analyzeFileSelectFactorSubmitButton" onclick = "javascript:submitAnalyzeFileForm(this);">Submit</button>
+</p>
+
+</form>
+{% endblock content %}

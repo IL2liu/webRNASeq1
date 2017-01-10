@@ -1,0 +1,12 @@
+PASS	Basic Statistics	GB85-PG_S8_R1_001.bam
+PASS	Per base sequence quality	GB85-PG_S8_R1_001.bam
+PASS	Per tile sequence quality	GB85-PG_S8_R1_001.bam
+PASS	Per sequence quality scores	GB85-PG_S8_R1_001.bam
+FAIL	Per base sequence content	GB85-PG_S8_R1_001.bam
+PASS	Per sequence GC content	GB85-PG_S8_R1_001.bam
+PASS	Per base N content	GB85-PG_S8_R1_001.bam
+WARN	Sequence Length Distribution	GB85-PG_S8_R1_001.bam
+PASS	Sequence Duplication Levels	GB85-PG_S8_R1_001.bam
+PASS	Overrepresented sequences	GB85-PG_S8_R1_001.bam
+PASS	Adapter Content	GB85-PG_S8_R1_001.bam
+FAIL	Kmer Content	GB85-PG_S8_R1_001.bam

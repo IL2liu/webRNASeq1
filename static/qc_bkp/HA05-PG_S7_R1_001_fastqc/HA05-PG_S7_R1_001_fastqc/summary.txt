@@ -1,0 +1,12 @@
+PASS	Basic Statistics	HA05-PG_S7_R1_001.bam
+PASS	Per base sequence quality	HA05-PG_S7_R1_001.bam
+PASS	Per tile sequence quality	HA05-PG_S7_R1_001.bam
+PASS	Per sequence quality scores	HA05-PG_S7_R1_001.bam
+FAIL	Per base sequence content	HA05-PG_S7_R1_001.bam
+PASS	Per sequence GC content	HA05-PG_S7_R1_001.bam
+PASS	Per base N content	HA05-PG_S7_R1_001.bam
+WARN	Sequence Length Distribution	HA05-PG_S7_R1_001.bam
+PASS	Sequence Duplication Levels	HA05-PG_S7_R1_001.bam
+PASS	Overrepresented sequences	HA05-PG_S7_R1_001.bam
+PASS	Adapter Content	HA05-PG_S7_R1_001.bam
+FAIL	Kmer Content	HA05-PG_S7_R1_001.bam

@@ -1,0 +1,12 @@
+PASS	Basic Statistics	EL86-PG_S2_R1_001.bam
+PASS	Per base sequence quality	EL86-PG_S2_R1_001.bam
+PASS	Per tile sequence quality	EL86-PG_S2_R1_001.bam
+PASS	Per sequence quality scores	EL86-PG_S2_R1_001.bam
+FAIL	Per base sequence content	EL86-PG_S2_R1_001.bam
+PASS	Per sequence GC content	EL86-PG_S2_R1_001.bam
+PASS	Per base N content	EL86-PG_S2_R1_001.bam
+WARN	Sequence Length Distribution	EL86-PG_S2_R1_001.bam
+PASS	Sequence Duplication Levels	EL86-PG_S2_R1_001.bam
+PASS	Overrepresented sequences	EL86-PG_S2_R1_001.bam
+PASS	Adapter Content	EL86-PG_S2_R1_001.bam
+FAIL	Kmer Content	EL86-PG_S2_R1_001.bam

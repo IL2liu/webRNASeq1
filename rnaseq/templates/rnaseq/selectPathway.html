@@ -1,0 +1,208 @@
+{% extends "base.html" %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/default.css">
+<!-- <link rel="stylesheet" type="text/css" href="/static/css/nouislider.css"> -->
+<!-- div.demo { padding: 10px !important; }; -->
+{% endblock css%}
+{% block js %}
+
+<script type="text/javascript">
+
+  function submitReportForm(obj,action){ 
+  
+    upinId = 0
+  
+    if ( action == "/batreports/scoreReport/" ) {
+  
+      objId = obj.id;
+    
+      data = objId.split("-");
+    
+      if (data.length > 0){
+
+         upinId = data[1];
+    
+      } 
+    
+    $("#upinId").val(upinId);
+    $("#reportForm").attr('action',action);    
+
+    $("#reportForm").submit();
+
+    }
+
+  }
+  
+  $(document).ready(function() {
+    
+    $('#upinDataTable').DataTable({
+      paging: false    
+    });
+    $('#sectionListTable').DataTable({
+       paging: false 
+      }
+      );
+    $('#questionListTable').DataTable({
+       paging: false 
+      }
+    );      
+    
+    $('#selectAllUPINs').click ( function()    
+     {        
+       $("input[name='reportUpinId']").prop('checked', $(this).is(':checked'));
+     }
+    );
+
+    $('#selectAllSections').click ( function()    
+     {        
+       $("input[name='instrumentSectionId']").prop('checked', $(this).is(':checked'));
+     }
+    );
+    
+    $('#selectAllMultipleChoices').click ( function()    
+     {        
+       $("input[name='multipleChoiceId']").prop('checked', $(this).is(':checked'));
+     }
+    );    		    
+
+  } );
+
+</script>
+
+{% endblock js %}
+
+{% block content %}
+
+<!-- /.row -->
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Upload File</h1>
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<form method = "post" id = "reportForm" name = "reportForm" action="/batreports/downloadReport/" >
+ {% csrf_token %} 
+ <input type="hidden" value="{{selectionObj.fileName}}" name="fileName" id ="fileName"/>
+ <input type="hidden" value="{{selectionObj.pValue}}" name="pValue" id ="pValue"/>
+ <input type="hidden" value="{{selectionObj.fdr}}" name="fdr" id ="fdr"/>
+ <input type="hidden" value="{{selectionObj.foldChangeValue}}" name="foldChangeValue" id ="foldChangeValue"/>
+
+ <div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+	  <h4 class="panel-title">
+	    <a data-toggle="collapse" data-parent="#panels1" href="#selectionParametersPanel">
+	      Selection Parameter Details. (Click to toggle this panel.)
+	    </a>
+	  </h4>        
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" >
+	<div id="selectionParametersPanel" class="panel-collapse collapse" >
+	  <p class="text-center">
+	    <h4>File Name:&nbsp;{{ fileName}}</h4>
+	  </p>
+	  <p>
+	    <h4>Fold Change Value:&nbsp;{{ foldChangeValue }}</h4>
+	  </p>
+	  <p>
+	    <h4>P Value:&nbsp;{{ pValue }}</h4>
+	  </p>
+	  <p>
+	    <h4>FDR:&nbsp;{{ fdr}}</h4>
+	  </p>
+	</div>
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+
+    <!-- /.panel -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+	<h4 class="panel-title">
+	  <a data-toggle="collapse" data-parent="#panels1" href="#sectionListPanel">
+	    File Data. (Click to toggle this panel.)
+	  </a>
+	</h4>        
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" >
+	<div id="sectionListPanel" class="panel-collapse collapse in">
+	  <p>Data List.</p> 	    	  <div class="table-responsive" >
+	    <table id="sectionListTable" class="display" cellspacing="0" width="100%">	  	  
+	      <thead>
+		<tr>
+		  <th>Gene</th>
+		  <th>GO</th>    
+		</tr>
+	      </thead>
+	      <tbody>
+	      {% for fileGeneObj in fileGeneObjList %}
+	      <tr>
+		<td>{{ fileGeneObj.go}}</td>  
+		<td>{{ fileGeneObj.go}}</td>    
+	      </tr> 
+	      {% endfor %}
+	      </tbody>
+	    </table>
+	  </div>
+	  <br/>
+	    
+       </div>
+      <!-- /.panel --> 
+    </div>
+  <!-- /.col-lg-12 -->
+  
+      <!-- /.panel -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+	<h4 class="panel-title">
+	  <a data-toggle="collapse" data-parent="#panels1" href="#sectionListPanel">
+	    Select Pathway Panel. (Click to toggle this panel.)
+	  </a>
+	</h4>        
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" >
+	<div id="sectionListPanel" class="panel-collapse collapse in">
+	  <p>Pathway list.</p> 	    	  
+	  <div class="table-responsive" >
+	    <table id="sectionListTable" class="display" cellspacing="0" width="100%">	  	  
+	      <thead>
+		<tr>
+		  <th>Select<input type="checkbox" value="" name="selectAllSections" id="selectAllSections" checked="checked"></th>
+		  <th>Pathway Name</th>    
+		</tr>
+	      </thead>
+	      <tbody>
+	      {% for pathway in pathways%}
+	      <tr>
+		<td><input type="checkbox" id="reportUpinId-{{upinObj.upin.id}}" name="reportUpinId" value={{upinObj.upin.id}} ></td>  
+		<td>{{ pathway}}</td>    
+	      </tr> 
+	      {% endfor %}
+	      </tbody>
+	    </table>
+	  </div>
+	  <br/>
+	    
+       </div>
+      <!-- /.panel --> 
+    </div>
+  <!-- /.col-lg-12 -->
+
+  </div>
+
+ </div>
+ 
+  <p class="text-center">
+   <button type="submit" class="btn btn-primary btn-lg" value = "1" name = "downloadOrPreview" id="previewReportButton" onsubmit="return submitReportForm(this, '/batreports/downloadReport/');">Preview Aggregate report</button>
+   <button type="submit" class="btn btn-danger btn-lg" value = "0" name = "downloadOrPreview" id="downloadReportButton" onsubmit="return submitReportForm(this, '/batreports/downloadReport/');">Download Aggregate report</button>&nbsp;&nbsp;&nbsp;
+ </p>
+
+ <!-- /.row -->
+</form>
+{% endblock content %}

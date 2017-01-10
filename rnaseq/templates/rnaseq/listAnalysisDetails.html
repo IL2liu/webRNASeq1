@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block css %}
+<!--<link rel="stylesheet" type="text/css" href="/static/css/default.css">-->
+<!-- <link rel="stylesheet" type="text/css" href="/static/css/nouislider.css"> -->
+<!-- div.demo { padding: 10px !important; }; -->
+{% endblock css%}
+{% block js %}
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#projectsTable').DataTable();
+
+  } );
+
+  function submitListAnalysisDetailsForm(obj){
+      <!--objId = obj.id;-->
+
+      <!--data = objId.split("-");-->
+
+      <!--if (data.length > 0){-->
+
+         <!--projectId = data[1];-->
+
+      <!--}-->
+
+    <!--$("#projectId").val(projectId);-->
+
+    $("#listAnalysisDetailsForm").submit();
+  }
+
+  <!--function submitAddProject(obj){-->
+
+    <!--$("#projectForm").attr("action","/rnaseq/addProject/");-->
+
+    <!--$("#projectForm").submit();-->
+  <!--}-->
+
+
+</script>
+
+{% endblock js %}
+
+{% block content %}
+
+<!-- /.row -->
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Job Status List</h1>
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<form method = "post" id = "listAnalysisDetailsForm" name = "listAnalysisDetailsForm" action="/rnaseq/displayAnalysisDetail/">
+ {% csrf_token %} 
+ <input type="hidden" value="" name="analysisDetailId" id ="analysisDetailId"/>
+ <div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Job Status List
+      </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body" >
+        <div class="table-responsive" >
+	  <table id="projectsTable" class="display" cellspacing="0" width="100%">
+	   <thead>
+	      <tr >
+		<th>Name</a></th>
+		<th>Description</a></th>
+		<th>Start Time</a></th>	
+		<th>End Time</a></th>			
+		<th>Status</a></th>		
+		<th>Details</a></th>		
+              </tr>
+           </thead>
+           <tbody>
+             <tr>
+               <td> Analysis 1 </td>
+	       <td> Analysis of Teleshova data</td>
+	       <td> 1/16/2016 12:30 PM</td>
+	       <td> 1/16/2016 12:33 PM</td>	       
+	       <td> Completed</td>
+               <td><button type="button" class="btn btn-primary" id = "analysisDetailButton-{{analysisDetail.id}}" name = "analysisDetailButton-{{analysisDetail.id}}" onclick ="javascript:submitListAnalysisDetailsForm(this);">Details </button></td>
+             </tr>
+           </tbody>
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+ </div>
+ <!-- /.row -->
+ <!--<p class="text-center">-->
+
+  <!--<button type="submit" class="btn btn-primary btn-lg" value = "0" name = "submitButton" id="submitButton-0" onclick ="javascript:submitAddProject(this);">Add Project</button>&nbsp;&nbsp;&nbsp;-->
+
+ <!--</p>  -->
+</form>
+{% endblock content %}

@@ -1,0 +1,12 @@
+PASS	Basic Statistics	RLib55_TAGCTT_L001_R1_001.bam
+PASS	Per base sequence quality	RLib55_TAGCTT_L001_R1_001.bam
+WARN	Per tile sequence quality	RLib55_TAGCTT_L001_R1_001.bam
+PASS	Per sequence quality scores	RLib55_TAGCTT_L001_R1_001.bam
+FAIL	Per base sequence content	RLib55_TAGCTT_L001_R1_001.bam
+PASS	Per sequence GC content	RLib55_TAGCTT_L001_R1_001.bam
+PASS	Per base N content	RLib55_TAGCTT_L001_R1_001.bam
+WARN	Sequence Length Distribution	RLib55_TAGCTT_L001_R1_001.bam
+WARN	Sequence Duplication Levels	RLib55_TAGCTT_L001_R1_001.bam
+PASS	Overrepresented sequences	RLib55_TAGCTT_L001_R1_001.bam
+PASS	Adapter Content	RLib55_TAGCTT_L001_R1_001.bam
+FAIL	Kmer Content	RLib55_TAGCTT_L001_R1_001.bam

@@ -1,0 +1,12 @@
+PASS	Basic Statistics	HH78-PG_S10_R1_001.bam
+PASS	Per base sequence quality	HH78-PG_S10_R1_001.bam
+PASS	Per tile sequence quality	HH78-PG_S10_R1_001.bam
+PASS	Per sequence quality scores	HH78-PG_S10_R1_001.bam
+FAIL	Per base sequence content	HH78-PG_S10_R1_001.bam
+PASS	Per sequence GC content	HH78-PG_S10_R1_001.bam
+PASS	Per base N content	HH78-PG_S10_R1_001.bam
+WARN	Sequence Length Distribution	HH78-PG_S10_R1_001.bam
+PASS	Sequence Duplication Levels	HH78-PG_S10_R1_001.bam
+PASS	Overrepresented sequences	HH78-PG_S10_R1_001.bam
+PASS	Adapter Content	HH78-PG_S10_R1_001.bam
+FAIL	Kmer Content	HH78-PG_S10_R1_001.bam

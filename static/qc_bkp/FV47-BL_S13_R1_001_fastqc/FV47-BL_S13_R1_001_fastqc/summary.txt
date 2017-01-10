@@ -1,0 +1,12 @@
+PASS	Basic Statistics	FV47-BL_S13_R1_001.bam
+PASS	Per base sequence quality	FV47-BL_S13_R1_001.bam
+PASS	Per tile sequence quality	FV47-BL_S13_R1_001.bam
+PASS	Per sequence quality scores	FV47-BL_S13_R1_001.bam
+FAIL	Per base sequence content	FV47-BL_S13_R1_001.bam
+PASS	Per sequence GC content	FV47-BL_S13_R1_001.bam
+PASS	Per base N content	FV47-BL_S13_R1_001.bam
+WARN	Sequence Length Distribution	FV47-BL_S13_R1_001.bam
+PASS	Sequence Duplication Levels	FV47-BL_S13_R1_001.bam
+PASS	Overrepresented sequences	FV47-BL_S13_R1_001.bam
+PASS	Adapter Content	FV47-BL_S13_R1_001.bam
+FAIL	Kmer Content	FV47-BL_S13_R1_001.bam

@@ -1,0 +1,1033 @@
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/celery/app/defaults.py:251: CPendingDeprecationWarning: 
+    The 'BROKER_USER' setting is scheduled for deprecation in     version 2.5 and removal in version v4.0.     Use the BROKER_URL setting instead
+
+  alternative='Use the {0.alt} instead'.format(opt))
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/celery/app/defaults.py:251: CPendingDeprecationWarning: 
+    The 'BROKER_HOST' setting is scheduled for deprecation in     version 2.5 and removal in version v4.0.     Use the BROKER_URL setting instead
+
+  alternative='Use the {0.alt} instead'.format(opt))
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/celery/app/defaults.py:251: CPendingDeprecationWarning: 
+    The 'BROKER_PORT' setting is scheduled for deprecation in     version 2.5 and removal in version v4.0.     Use the BROKER_URL setting instead
+
+  alternative='Use the {0.alt} instead'.format(opt))
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/celery/app/defaults.py:251: CPendingDeprecationWarning: 
+    The 'BROKER_PASSWORD' setting is scheduled for deprecation in     version 2.5 and removal in version v4.0.     Use the BROKER_URL setting instead
+
+  alternative='Use the {0.alt} instead'.format(opt))
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/celery/app/defaults.py:251: CPendingDeprecationWarning: 
+    The 'BROKER_VHOST' setting is scheduled for deprecation in     version 2.5 and removal in version v4.0.     Use the BROKER_URL setting instead
+
+  alternative='Use the {0.alt} instead'.format(opt))
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/core/management/base.py:265: RemovedInDjango110Warning: OptionParser usage for Django management commands is deprecated, use ArgumentParser instead
+  RemovedInDjango110Warning)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/template/utils.py:37: RemovedInDjango110Warning: You haven't defined a TEMPLATES setting. You must do so before upgrading to Django 1.10. Otherwise Django will be unable to load templates.
+  "unable to load templates.", RemovedInDjango110Warning)
+
+/var/www/projects/webRNASeq/urls.py:68: RemovedInDjango110Warning: django.conf.urls.patterns() is deprecated and will be removed in Django 1.10. Update your urlpatterns to be a list of django.conf.urls.url() instances instead.
+  (r'^accounts/', include('registration.urls')),
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.landing). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.processLanding). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.listProjects). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.listFiles). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.listSubmittedJobs). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.addProject). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.addDataFile). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.submitAddProject). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.submitAddDataFile). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.displayFileDetails). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.analyzeFileSelect). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.analyzeFileSelectFactors). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.analyzeFileShowContrastMatrix). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.analyzeFileSubmit). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.analyzeFileSelectColumns). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.analyzeProject). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.displayAnalysisDetail). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.submittedJobDetail). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.sampleDetail). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.downloadDEGData). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.downloadData). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.downloadImage). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.listAnalyses). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.deletePhenotypeFile). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.deleteProjectFiles). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.deleteProject). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.deleteAnalysisDetail). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.displayNewProjects). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.submitAddNewProject). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.showPlots). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/celery/apps/worker.py:161: CDeprecationWarning: 
+Starting from version 3.2 Celery will refuse to accept pickle by default.
+
+The pickle serializer is a security concern as it may give attackers
+the ability to execute any command.  It's important to secure
+your broker from unauthorized access when using pickle, so we think
+that enabling pickle should require a deliberate action and not be
+the default choice.
+
+If you depend on pickle then you should set a setting to disable this
+warning and to be sure that everything will continue working
+when you upgrade to Celery 3.2::
+
+    CELERY_ACCEPT_CONTENT = ['pickle', 'json', 'msgpack', 'yaml']
+
+You must only enable the serializers that you will actually use.
+
+
+  warnings.warn(CDeprecationWarning(W_PICKLE_DEPRECATED))
+
+[2016-05-20 01:19:50,311: WARNING/MainProcess] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/celery/apps/worker.py:161: CDeprecationWarning: 
+Starting from version 3.2 Celery will refuse to accept pickle by default.
+
+The pickle serializer is a security concern as it may give attackers
+the ability to execute any command.  It's important to secure
+your broker from unauthorized access when using pickle, so we think
+that enabling pickle should require a deliberate action and not be
+the default choice.
+
+If you depend on pickle then you should set a setting to disable this
+warning and to be sure that everything will continue working
+when you upgrade to Celery 3.2::
+
+    CELERY_ACCEPT_CONTENT = ['pickle', 'json', 'msgpack', 'yaml']
+
+You must only enable the serializers that you will actually use.
+
+
+  warnings.warn(CDeprecationWarning(W_PICKLE_DEPRECATED))
+
+[2016-05-20 01:19:50,437: INFO/MainProcess] Connected to amqp://guest:**@127.0.0.1:5672//
+[2016-05-20 01:19:50,451: INFO/MainProcess] mingle: searching for neighbors
+[2016-05-20 01:19:51,458: INFO/MainProcess] mingle: all alone
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/djcelery/loaders.py:136: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+  warn('Using settings.DEBUG leads to a memory leak, never '
+
+[2016-05-20 01:19:51,470: WARNING/MainProcess] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/djcelery/loaders.py:136: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+  warn('Using settings.DEBUG leads to a memory leak, never '
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/celery/fixups/django.py:265: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+  warnings.warn('Using settings.DEBUG leads to a memory leak, never '
+
+[2016-05-20 01:19:51,470: WARNING/MainProcess] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/celery/fixups/django.py:265: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+  warnings.warn('Using settings.DEBUG leads to a memory leak, never '
+
+[2016-05-20 01:19:51,471: WARNING/MainProcess] celery@hinfo.rockefeller.edu ready.
+[2016-05-20 01:25:26,337: INFO/MainProcess] Received task: rnaseq.tasks.submitLimma[88c31dec-6fb9-4f99-bc33-11176783dc33]
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.submittedOn received a naive datetime (2016-05-20 01:25:26.289054) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 01:25:26,353: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.submittedOn received a naive datetime (2016-05-20 01:25:26.289054) while time zone support is active.
+  RuntimeWarning)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: limma
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:26,367: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: limma
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: reshape2
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:26,751: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: reshape2
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: ggplot2
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:26,920: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: ggplot2
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: gplots
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:27,110: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: gplots
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: 
+Attaching package: ‘gplots’
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:27,165: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: 
+Attaching package: ‘gplots’
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: The following object is masked from ‘package:stats’:
+
+    lowess
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:27,166: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: The following object is masked from ‘package:stats’:
+
+    lowess
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: plyr
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:27,175: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: plyr
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: BiocGenerics
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:27,208: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: BiocGenerics
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: parallel
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:27,212: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: parallel
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: 
+Attaching package: ‘BiocGenerics’
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:27,435: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: 
+Attaching package: ‘BiocGenerics’
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: The following objects are masked from ‘package:parallel’:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    clusterExport, clusterMap, parApply, parCapply, parLapply,
+    parLapplyLB, parRapply, parSapply, parSapplyLB
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:27,436: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: The following objects are masked from ‘package:parallel’:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    clusterExport, clusterMap, parApply, parCapply, parLapply,
+    parLapplyLB, parRapply, parSapply, parSapplyLB
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: The following object is masked from ‘package:limma’:
+
+    plotMA
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:27,439: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: The following object is masked from ‘package:limma’:
+
+    plotMA
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: The following objects are masked from ‘package:stats’:
+
+    IQR, mad, xtabs
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:27,441: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: The following objects are masked from ‘package:stats’:
+
+    IQR, mad, xtabs
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: The following objects are masked from ‘package:base’:
+
+    anyDuplicated, append, as.data.frame, as.vector, cbind, colnames,
+    do.call, duplicated, eval, evalq, Filter, Find, get, grep, grepl,
+    intersect, is.unsorted, lapply, lengths, Map, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+    union, unique, unlist, unsplit
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:27,452: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: The following objects are masked from ‘package:base’:
+
+    anyDuplicated, append, as.data.frame, as.vector, cbind, colnames,
+    do.call, duplicated, eval, evalq, Filter, Find, get, grep, grepl,
+    intersect, is.unsorted, lapply, lengths, Map, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+    union, unique, unlist, unsplit
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:27,733: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:29,185: WARNING/Worker-2] [1]
+[2016-05-20 01:25:29,185: WARNING/Worker-2] 33
+[2016-05-20 01:25:29,185: WARNING/Worker-2] 6
+[2016-05-20 01:25:29,185: WARNING/Worker-2] 7
+[2016-05-20 01:25:29,185: WARNING/Worker-2] 13
+[2016-05-20 01:25:29,186: WARNING/Worker-2] 20
+[2016-05-20 01:25:29,186: WARNING/Worker-2] 26
+[2016-05-20 01:25:29,186: WARNING/Worker-2] 23
+[2016-05-20 01:25:29,186: WARNING/Worker-2] 31
+[2016-05-20 01:25:29,186: WARNING/Worker-2] 16
+[2016-05-20 01:25:29,186: WARNING/Worker-2] 9
+[2016-05-20 01:25:29,186: WARNING/Worker-2] 35
+[2016-05-20 01:25:29,186: WARNING/Worker-2] 17
+[2016-05-20 01:25:29,186: WARNING/Worker-2] 14
+[2016-05-20 01:25:29,186: WARNING/Worker-2] 24
+[2016-05-20 01:25:29,187: WARNING/Worker-2] 29
+[2016-05-20 01:25:29,187: WARNING/Worker-2] 28
+[2016-05-20 01:25:29,187: WARNING/Worker-2] 34
+[2016-05-20 01:25:29,187: WARNING/Worker-2] 11
+[2016-05-20 01:25:29,187: WARNING/Worker-2] 22
+[2016-05-20 01:25:29,187: WARNING/Worker-2] 19
+[2016-05-20 01:25:29,187: WARNING/Worker-2] 8
+[2016-05-20 01:25:29,187: WARNING/Worker-2] 25
+[2016-05-20 01:25:29,187: WARNING/Worker-2] 27
+[2016-05-20 01:25:29,187: WARNING/Worker-2] 15
+[2016-05-20 01:25:29,187: WARNING/Worker-2] 30
+[2016-05-20 01:25:29,188: WARNING/Worker-2] [26]
+[2016-05-20 01:25:29,188: WARNING/Worker-2] 10
+[2016-05-20 01:25:29,188: WARNING/Worker-2] 32
+[2016-05-20 01:25:29,188: WARNING/Worker-2] 21
+[2016-05-20 01:25:29,188: WARNING/Worker-2] 18
+[2016-05-20 01:25:29,188: WARNING/Worker-2] 12
+[2016-05-20 01:25:30,389: WARNING/Worker-2] [1]
+[2016-05-20 01:25:30,389: WARNING/Worker-2] " before normalized"
+[2016-05-20 01:25:35,106: INFO/MainProcess] Received task: rnaseq.tasks.submitLimma[53009325-433c-4d26-aa6e-634d777ea3f7]
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.submittedOn received a naive datetime (2016-05-20 01:25:35.078541) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 01:25:35,120: WARNING/Worker-1] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.submittedOn received a naive datetime (2016-05-20 01:25:35.078541) while time zone support is active.
+  RuntimeWarning)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: limma
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:35,134: WARNING/Worker-1] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: limma
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: reshape2
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:35,558: WARNING/Worker-1] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: reshape2
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: ggplot2
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:35,748: WARNING/Worker-1] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: ggplot2
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: gplots
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:35,965: WARNING/Worker-1] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: gplots
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: 
+Attaching package: ‘gplots’
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:36,030: WARNING/Worker-1] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: 
+Attaching package: ‘gplots’
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: The following object is masked from ‘package:stats’:
+
+    lowess
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:36,032: WARNING/Worker-1] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: The following object is masked from ‘package:stats’:
+
+    lowess
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: plyr
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:36,042: WARNING/Worker-1] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: plyr
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: BiocGenerics
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:36,079: WARNING/Worker-1] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: BiocGenerics
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: parallel
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:36,084: WARNING/Worker-1] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Loading required package: parallel
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: 
+Attaching package: ‘BiocGenerics’
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:36,337: WARNING/Worker-1] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: 
+Attaching package: ‘BiocGenerics’
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: The following objects are masked from ‘package:parallel’:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    clusterExport, clusterMap, parApply, parCapply, parLapply,
+    parLapplyLB, parRapply, parSapply, parSapplyLB
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:36,338: WARNING/Worker-1] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: The following objects are masked from ‘package:parallel’:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    clusterExport, clusterMap, parApply, parCapply, parLapply,
+    parLapplyLB, parRapply, parSapply, parSapplyLB
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: The following object is masked from ‘package:limma’:
+
+    plotMA
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:36,342: WARNING/Worker-1] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: The following object is masked from ‘package:limma’:
+
+    plotMA
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: The following objects are masked from ‘package:stats’:
+
+    IQR, mad, xtabs
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:36,344: WARNING/Worker-1] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: The following objects are masked from ‘package:stats’:
+
+    IQR, mad, xtabs
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: The following objects are masked from ‘package:base’:
+
+    anyDuplicated, append, as.data.frame, as.vector, cbind, colnames,
+    do.call, duplicated, eval, evalq, Filter, Find, get, grep, grepl,
+    intersect, is.unsorted, lapply, lengths, Map, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+    union, unique, unlist, unsplit
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:36,357: WARNING/Worker-1] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: The following objects are masked from ‘package:base’:
+
+    anyDuplicated, append, as.data.frame, as.vector, cbind, colnames,
+    do.call, duplicated, eval, evalq, Filter, Find, get, grep, grepl,
+    intersect, is.unsorted, lapply, lengths, Map, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+    union, unique, unlist, unsplit
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+[2016-05-20 01:25:36,670: WARNING/Worker-1] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/rpy2/robjects/functions.py:106: UserWarning: Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+  res = super(Function, self).__call__(*new_args, **new_kwargs)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.completedTime received a naive datetime (2016-05-20 01:25:37.215557) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 01:25:37,216: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.completedTime received a naive datetime (2016-05-20 01:25:37.215557) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 01:25:37,223: INFO/MainProcess] Task rnaseq.tasks.submitLimma[88c31dec-6fb9-4f99-bc33-11176783dc33] succeeded in 10.880904796533287s: None
+[2016-05-20 01:25:38,242: WARNING/Worker-1] [1]
+[2016-05-20 01:25:38,242: WARNING/Worker-1] 33
+[2016-05-20 01:25:38,242: WARNING/Worker-1] 6
+[2016-05-20 01:25:38,243: WARNING/Worker-1] 7
+[2016-05-20 01:25:38,243: WARNING/Worker-1] 13
+[2016-05-20 01:25:38,243: WARNING/Worker-1] 20
+[2016-05-20 01:25:38,243: WARNING/Worker-1] 26
+[2016-05-20 01:25:38,243: WARNING/Worker-1] 23
+[2016-05-20 01:25:38,243: WARNING/Worker-1] 31
+[2016-05-20 01:25:38,243: WARNING/Worker-1] 16
+[2016-05-20 01:25:38,243: WARNING/Worker-1] 9
+[2016-05-20 01:25:38,243: WARNING/Worker-1] 35
+[2016-05-20 01:25:38,243: WARNING/Worker-1] 17
+[2016-05-20 01:25:38,244: WARNING/Worker-1] 14
+[2016-05-20 01:25:38,244: WARNING/Worker-1] 24
+[2016-05-20 01:25:38,244: WARNING/Worker-1] 29
+[2016-05-20 01:25:38,244: WARNING/Worker-1] 28
+[2016-05-20 01:25:38,244: WARNING/Worker-1] 34
+[2016-05-20 01:25:38,244: WARNING/Worker-1] 11
+[2016-05-20 01:25:38,244: WARNING/Worker-1] 22
+[2016-05-20 01:25:38,244: WARNING/Worker-1] 19
+[2016-05-20 01:25:38,244: WARNING/Worker-1] 8
+[2016-05-20 01:25:38,244: WARNING/Worker-1] 25
+[2016-05-20 01:25:38,245: WARNING/Worker-1] 27
+[2016-05-20 01:25:38,245: WARNING/Worker-1] 15
+[2016-05-20 01:25:38,245: WARNING/Worker-1] 30
+[2016-05-20 01:25:38,245: WARNING/Worker-1] [26]
+[2016-05-20 01:25:38,245: WARNING/Worker-1] 10
+[2016-05-20 01:25:38,245: WARNING/Worker-1] 32
+[2016-05-20 01:25:38,245: WARNING/Worker-1] 21
+[2016-05-20 01:25:38,245: WARNING/Worker-1] 18
+[2016-05-20 01:25:38,245: WARNING/Worker-1] 12
+[2016-05-20 01:25:39,468: WARNING/Worker-1] [1]
+[2016-05-20 01:25:39,468: WARNING/Worker-1] " before normalized"
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.completedTime received a naive datetime (2016-05-20 01:25:46.036629) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 01:25:46,037: WARNING/Worker-1] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.completedTime received a naive datetime (2016-05-20 01:25:46.036629) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 01:25:46,043: INFO/MainProcess] Task rnaseq.tasks.submitLimma[53009325-433c-4d26-aa6e-634d777ea3f7] succeeded in 10.934324219822884s: None
+[2016-05-20 01:56:12,612: INFO/MainProcess] Received task: rnaseq.tasks.submitLimma[53b09103-cd6e-4b95-9761-e08a5a1a0b58]
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.submittedOn received a naive datetime (2016-05-20 01:56:12.599423) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 01:56:12,623: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.submittedOn received a naive datetime (2016-05-20 01:56:12.599423) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 01:56:13,144: WARNING/Worker-2] [1]
+[2016-05-20 01:56:13,144: WARNING/Worker-2] 33
+[2016-05-20 01:56:13,144: WARNING/Worker-2] 6
+[2016-05-20 01:56:13,144: WARNING/Worker-2] 7
+[2016-05-20 01:56:13,144: WARNING/Worker-2] 13
+[2016-05-20 01:56:13,145: WARNING/Worker-2] 20
+[2016-05-20 01:56:13,145: WARNING/Worker-2] 26
+[2016-05-20 01:56:13,145: WARNING/Worker-2] 23
+[2016-05-20 01:56:13,145: WARNING/Worker-2] 31
+[2016-05-20 01:56:13,145: WARNING/Worker-2] 16
+[2016-05-20 01:56:13,145: WARNING/Worker-2] 9
+[2016-05-20 01:56:13,145: WARNING/Worker-2] 35
+[2016-05-20 01:56:13,145: WARNING/Worker-2] 17
+[2016-05-20 01:56:13,145: WARNING/Worker-2] 14
+[2016-05-20 01:56:13,145: WARNING/Worker-2] 24
+[2016-05-20 01:56:13,146: WARNING/Worker-2] 29
+[2016-05-20 01:56:13,146: WARNING/Worker-2] 28
+[2016-05-20 01:56:13,146: WARNING/Worker-2] 34
+[2016-05-20 01:56:13,146: WARNING/Worker-2] 11
+[2016-05-20 01:56:13,146: WARNING/Worker-2] 22
+[2016-05-20 01:56:13,146: WARNING/Worker-2] 19
+[2016-05-20 01:56:13,146: WARNING/Worker-2] 8
+[2016-05-20 01:56:13,146: WARNING/Worker-2] 25
+[2016-05-20 01:56:13,146: WARNING/Worker-2] 27
+[2016-05-20 01:56:13,146: WARNING/Worker-2] 15
+[2016-05-20 01:56:13,147: WARNING/Worker-2] 30
+[2016-05-20 01:56:13,147: WARNING/Worker-2] [26]
+[2016-05-20 01:56:13,147: WARNING/Worker-2] 10
+[2016-05-20 01:56:13,147: WARNING/Worker-2] 32
+[2016-05-20 01:56:13,147: WARNING/Worker-2] 21
+[2016-05-20 01:56:13,147: WARNING/Worker-2] 18
+[2016-05-20 01:56:13,147: WARNING/Worker-2] 12
+[2016-05-20 01:56:14,254: WARNING/Worker-2] [1]
+[2016-05-20 01:56:14,254: WARNING/Worker-2] " before normalized"
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.completedTime received a naive datetime (2016-05-20 01:56:20.455911) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 01:56:20,457: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.completedTime received a naive datetime (2016-05-20 01:56:20.455911) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 01:56:20,461: INFO/MainProcess] Task rnaseq.tasks.submitLimma[53b09103-cd6e-4b95-9761-e08a5a1a0b58] succeeded in 7.842395342886448s: None
+[2016-05-20 02:09:49,455: INFO/MainProcess] Received task: rnaseq.tasks.submitLimma[9a9a8973-99dd-443a-8d06-cb80a071849c]
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.submittedOn received a naive datetime (2016-05-20 02:09:49.444010) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 02:09:49,463: WARNING/Worker-1] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.submittedOn received a naive datetime (2016-05-20 02:09:49.444010) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 02:09:50,115: WARNING/Worker-1] [1]
+[2016-05-20 02:09:50,115: WARNING/Worker-1] 8
+[2016-05-20 02:09:50,116: WARNING/Worker-1] 6
+[2016-05-20 02:09:50,116: WARNING/Worker-1] 7
+[2016-05-20 02:09:50,116: WARNING/Worker-1] 9
+[2016-05-20 02:09:50,414: WARNING/Worker-1] [1]
+[2016-05-20 02:09:50,414: WARNING/Worker-1] " before normalized"
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.completedTime received a naive datetime (2016-05-20 02:09:53.734607) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 02:09:53,735: WARNING/Worker-1] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.completedTime received a naive datetime (2016-05-20 02:09:53.734607) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 02:09:53,740: INFO/MainProcess] Task rnaseq.tasks.submitLimma[9a9a8973-99dd-443a-8d06-cb80a071849c] succeeded in 4.282076604664326s: None
+[2016-05-20 14:42:55,271: INFO/MainProcess] Received task: rnaseq.tasks.submitLimma[cfa2b3d8-912f-4380-abef-4bdfc2dc353b]
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.submittedOn received a naive datetime (2016-05-20 14:42:55.258240) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 14:42:55,280: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.submittedOn received a naive datetime (2016-05-20 14:42:55.258240) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 14:42:55,887: WARNING/Worker-2] [1]
+[2016-05-20 14:42:55,887: WARNING/Worker-2] 33
+[2016-05-20 14:42:55,887: WARNING/Worker-2] 6
+[2016-05-20 14:42:55,887: WARNING/Worker-2] 7
+[2016-05-20 14:42:55,887: WARNING/Worker-2] 13
+[2016-05-20 14:42:55,887: WARNING/Worker-2] 20
+[2016-05-20 14:42:55,887: WARNING/Worker-2] 26
+[2016-05-20 14:42:55,887: WARNING/Worker-2] 23
+[2016-05-20 14:42:55,888: WARNING/Worker-2] 31
+[2016-05-20 14:42:55,888: WARNING/Worker-2] 16
+[2016-05-20 14:42:55,888: WARNING/Worker-2] 9
+[2016-05-20 14:42:55,888: WARNING/Worker-2] 35
+[2016-05-20 14:42:55,888: WARNING/Worker-2] 17
+[2016-05-20 14:42:55,888: WARNING/Worker-2] 14
+[2016-05-20 14:42:55,888: WARNING/Worker-2] 24
+[2016-05-20 14:42:55,888: WARNING/Worker-2] 29
+[2016-05-20 14:42:55,888: WARNING/Worker-2] 28
+[2016-05-20 14:42:55,888: WARNING/Worker-2] 34
+[2016-05-20 14:42:55,889: WARNING/Worker-2] 11
+[2016-05-20 14:42:55,889: WARNING/Worker-2] 22
+[2016-05-20 14:42:55,889: WARNING/Worker-2] 19
+[2016-05-20 14:42:55,889: WARNING/Worker-2] 8
+[2016-05-20 14:42:55,889: WARNING/Worker-2] 25
+[2016-05-20 14:42:55,889: WARNING/Worker-2] 27
+[2016-05-20 14:42:55,889: WARNING/Worker-2] 15
+[2016-05-20 14:42:55,889: WARNING/Worker-2] 30
+[2016-05-20 14:42:55,889: WARNING/Worker-2] [26]
+[2016-05-20 14:42:55,889: WARNING/Worker-2] 10
+[2016-05-20 14:42:55,890: WARNING/Worker-2] 32
+[2016-05-20 14:42:55,890: WARNING/Worker-2] 21
+[2016-05-20 14:42:55,890: WARNING/Worker-2] 18
+[2016-05-20 14:42:55,890: WARNING/Worker-2] 12
+[2016-05-20 14:42:56,912: WARNING/Worker-2] [1]
+[2016-05-20 14:42:56,913: WARNING/Worker-2] " before normalized"
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.completedTime received a naive datetime (2016-05-20 14:43:03.415468) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 14:43:03,417: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.completedTime received a naive datetime (2016-05-20 14:43:03.415468) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 14:43:03,489: INFO/MainProcess] Task rnaseq.tasks.submitLimma[cfa2b3d8-912f-4380-abef-4bdfc2dc353b] succeeded in 8.21483538299799s: None
+[2016-05-20 15:02:00,577: INFO/MainProcess] Received task: rnaseq.tasks.submitLimma[1ab94e1f-53c0-417b-977c-c43b2ea0f99f]
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.submittedOn received a naive datetime (2016-05-20 15:02:00.551185) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 15:02:00,585: WARNING/Worker-1] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.submittedOn received a naive datetime (2016-05-20 15:02:00.551185) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 15:02:01,207: WARNING/Worker-1] [1]
+[2016-05-20 15:02:01,207: WARNING/Worker-1] 33
+[2016-05-20 15:02:01,208: WARNING/Worker-1] 6
+[2016-05-20 15:02:01,208: WARNING/Worker-1] 7
+[2016-05-20 15:02:01,208: WARNING/Worker-1] 13
+[2016-05-20 15:02:01,208: WARNING/Worker-1] 20
+[2016-05-20 15:02:01,208: WARNING/Worker-1] 26
+[2016-05-20 15:02:01,208: WARNING/Worker-1] 23
+[2016-05-20 15:02:01,208: WARNING/Worker-1] 31
+[2016-05-20 15:02:01,208: WARNING/Worker-1] 16
+[2016-05-20 15:02:01,208: WARNING/Worker-1] 9
+[2016-05-20 15:02:01,208: WARNING/Worker-1] 35
+[2016-05-20 15:02:01,208: WARNING/Worker-1] 17
+[2016-05-20 15:02:01,209: WARNING/Worker-1] 14
+[2016-05-20 15:02:01,209: WARNING/Worker-1] 24
+[2016-05-20 15:02:01,209: WARNING/Worker-1] 29
+[2016-05-20 15:02:01,209: WARNING/Worker-1] 28
+[2016-05-20 15:02:01,209: WARNING/Worker-1] 34
+[2016-05-20 15:02:01,209: WARNING/Worker-1] 11
+[2016-05-20 15:02:01,209: WARNING/Worker-1] 22
+[2016-05-20 15:02:01,209: WARNING/Worker-1] 19
+[2016-05-20 15:02:01,209: WARNING/Worker-1] 8
+[2016-05-20 15:02:01,209: WARNING/Worker-1] 25
+[2016-05-20 15:02:01,210: WARNING/Worker-1] 27
+[2016-05-20 15:02:01,210: WARNING/Worker-1] 15
+[2016-05-20 15:02:01,210: WARNING/Worker-1] 30
+[2016-05-20 15:02:01,210: WARNING/Worker-1] [26]
+[2016-05-20 15:02:01,210: WARNING/Worker-1] 10
+[2016-05-20 15:02:01,210: WARNING/Worker-1] 32
+[2016-05-20 15:02:01,210: WARNING/Worker-1] 21
+[2016-05-20 15:02:01,210: WARNING/Worker-1] 18
+[2016-05-20 15:02:01,210: WARNING/Worker-1] 12
+[2016-05-20 15:02:02,161: WARNING/Worker-1] [1]
+[2016-05-20 15:02:02,161: WARNING/Worker-1] " before normalized"
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.completedTime received a naive datetime (2016-05-20 15:02:08.544302) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 15:02:08,545: WARNING/Worker-1] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.completedTime received a naive datetime (2016-05-20 15:02:08.544302) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 15:02:08,550: INFO/MainProcess] Task rnaseq.tasks.submitLimma[1ab94e1f-53c0-417b-977c-c43b2ea0f99f] succeeded in 7.970612618140876s: None
+[2016-05-20 20:01:58,287: INFO/MainProcess] Received task: rnaseq.tasks.submitLimma[3246ef9c-8bd9-4cbb-9168-c4ef9c8b491d]
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.submittedOn received a naive datetime (2016-05-20 20:01:58.262432) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 20:01:58,294: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.submittedOn received a naive datetime (2016-05-20 20:01:58.262432) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 20:01:58,986: WARNING/Worker-2] [1]
+[2016-05-20 20:01:58,986: WARNING/Worker-2] 33
+[2016-05-20 20:01:58,986: WARNING/Worker-2] 6
+[2016-05-20 20:01:58,986: WARNING/Worker-2] 7
+[2016-05-20 20:01:58,986: WARNING/Worker-2] 13
+[2016-05-20 20:01:58,986: WARNING/Worker-2] 20
+[2016-05-20 20:01:58,986: WARNING/Worker-2] 26
+[2016-05-20 20:01:58,986: WARNING/Worker-2] 23
+[2016-05-20 20:01:58,987: WARNING/Worker-2] 31
+[2016-05-20 20:01:58,987: WARNING/Worker-2] 16
+[2016-05-20 20:01:58,987: WARNING/Worker-2] 9
+[2016-05-20 20:01:58,987: WARNING/Worker-2] 35
+[2016-05-20 20:01:58,987: WARNING/Worker-2] 17
+[2016-05-20 20:01:58,987: WARNING/Worker-2] 14
+[2016-05-20 20:01:58,987: WARNING/Worker-2] 24
+[2016-05-20 20:01:58,987: WARNING/Worker-2] 29
+[2016-05-20 20:01:58,987: WARNING/Worker-2] 28
+[2016-05-20 20:01:58,987: WARNING/Worker-2] 34
+[2016-05-20 20:01:58,988: WARNING/Worker-2] 11
+[2016-05-20 20:01:58,988: WARNING/Worker-2] 22
+[2016-05-20 20:01:58,988: WARNING/Worker-2] 19
+[2016-05-20 20:01:58,988: WARNING/Worker-2] 8
+[2016-05-20 20:01:58,988: WARNING/Worker-2] 25
+[2016-05-20 20:01:58,988: WARNING/Worker-2] 27
+[2016-05-20 20:01:58,988: WARNING/Worker-2] 15
+[2016-05-20 20:01:58,988: WARNING/Worker-2] 30
+[2016-05-20 20:01:58,988: WARNING/Worker-2] [26]
+[2016-05-20 20:01:58,988: WARNING/Worker-2] 10
+[2016-05-20 20:01:58,988: WARNING/Worker-2] 32
+[2016-05-20 20:01:58,989: WARNING/Worker-2] 21
+[2016-05-20 20:01:58,989: WARNING/Worker-2] 18
+[2016-05-20 20:01:58,989: WARNING/Worker-2] 12
+[2016-05-20 20:01:59,951: WARNING/Worker-2] [1]
+[2016-05-20 20:01:59,951: WARNING/Worker-2] " before normalized"
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.completedTime received a naive datetime (2016-05-20 20:02:06.660850) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 20:02:06,662: WARNING/Worker-2] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField SubmittedJob.completedTime received a naive datetime (2016-05-20 20:02:06.660850) while time zone support is active.
+  RuntimeWarning)
+
+[2016-05-20 20:02:06,666: INFO/MainProcess] Task rnaseq.tasks.submitLimma[3246ef9c-8bd9-4cbb-9168-c4ef9c8b491d] succeeded in 8.376317981630564s: None
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/celery/app/defaults.py:251: CPendingDeprecationWarning: 
+    The 'BROKER_HOST' setting is scheduled for deprecation in     version 2.5 and removal in version v4.0.     Use the BROKER_URL setting instead
+
+  alternative='Use the {0.alt} instead'.format(opt))
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/celery/app/defaults.py:251: CPendingDeprecationWarning: 
+    The 'BROKER_PORT' setting is scheduled for deprecation in     version 2.5 and removal in version v4.0.     Use the BROKER_URL setting instead
+
+  alternative='Use the {0.alt} instead'.format(opt))
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/celery/app/defaults.py:251: CPendingDeprecationWarning: 
+    The 'BROKER_VHOST' setting is scheduled for deprecation in     version 2.5 and removal in version v4.0.     Use the BROKER_URL setting instead
+
+  alternative='Use the {0.alt} instead'.format(opt))
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/celery/app/defaults.py:251: CPendingDeprecationWarning: 
+    The 'BROKER_PASSWORD' setting is scheduled for deprecation in     version 2.5 and removal in version v4.0.     Use the BROKER_URL setting instead
+
+  alternative='Use the {0.alt} instead'.format(opt))
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/celery/app/defaults.py:251: CPendingDeprecationWarning: 
+    The 'BROKER_USER' setting is scheduled for deprecation in     version 2.5 and removal in version v4.0.     Use the BROKER_URL setting instead
+
+  alternative='Use the {0.alt} instead'.format(opt))
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/core/management/base.py:265: RemovedInDjango110Warning: OptionParser usage for Django management commands is deprecated, use ArgumentParser instead
+  RemovedInDjango110Warning)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/template/utils.py:37: RemovedInDjango110Warning: You haven't defined a TEMPLATES setting. You must do so before upgrading to Django 1.10. Otherwise Django will be unable to load templates.
+  "unable to load templates.", RemovedInDjango110Warning)
+
+/var/www/projects/webRNASeq/urls.py:68: RemovedInDjango110Warning: django.conf.urls.patterns() is deprecated and will be removed in Django 1.10. Update your urlpatterns to be a list of django.conf.urls.url() instances instead.
+  (r'^accounts/', include('registration.urls')),
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.landing). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.processLanding). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.listProjects). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.listFiles). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.listSubmittedJobs). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.addProject). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.addDataFile). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.submitAddProject). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.submitAddDataFile). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.displayFileDetails). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.analyzeFileSelect). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.analyzeFileSelectFactors). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.analyzeFileShowContrastMatrix). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.analyzeFileSubmit). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.analyzeFileSelectColumns). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.analyzeProject). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.displayAnalysisDetail). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.submittedJobDetail). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.sampleDetail). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.downloadDEGData). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.downloadData). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.downloadImage). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.listAnalyses). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.deletePhenotypeFile). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.deleteProjectFiles). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.deleteProject). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.deleteAnalysisDetail). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.displayNewProjects). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.submitAddNewProject). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/django/conf/urls/__init__.py:89: RemovedInDjango110Warning: Support for string view arguments to url() is deprecated and will be removed in Django 1.10 (got rnaseq.views.showPlots). Pass the callable instead.
+  t = url(prefix=prefix, *t)
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/celery/apps/worker.py:161: CDeprecationWarning: 
+Starting from version 3.2 Celery will refuse to accept pickle by default.
+
+The pickle serializer is a security concern as it may give attackers
+the ability to execute any command.  It's important to secure
+your broker from unauthorized access when using pickle, so we think
+that enabling pickle should require a deliberate action and not be
+the default choice.
+
+If you depend on pickle then you should set a setting to disable this
+warning and to be sure that everything will continue working
+when you upgrade to Celery 3.2::
+
+    CELERY_ACCEPT_CONTENT = ['pickle', 'json', 'msgpack', 'yaml']
+
+You must only enable the serializers that you will actually use.
+
+
+  warnings.warn(CDeprecationWarning(W_PICKLE_DEPRECATED))
+
+[2016-05-25 01:31:14,126: WARNING/MainProcess] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/celery/apps/worker.py:161: CDeprecationWarning: 
+Starting from version 3.2 Celery will refuse to accept pickle by default.
+
+The pickle serializer is a security concern as it may give attackers
+the ability to execute any command.  It's important to secure
+your broker from unauthorized access when using pickle, so we think
+that enabling pickle should require a deliberate action and not be
+the default choice.
+
+If you depend on pickle then you should set a setting to disable this
+warning and to be sure that everything will continue working
+when you upgrade to Celery 3.2::
+
+    CELERY_ACCEPT_CONTENT = ['pickle', 'json', 'msgpack', 'yaml']
+
+You must only enable the serializers that you will actually use.
+
+
+  warnings.warn(CDeprecationWarning(W_PICKLE_DEPRECATED))
+
+[2016-05-25 01:31:14,346: INFO/MainProcess] Connected to amqp://guest:**@127.0.0.1:5672//
+[2016-05-25 01:31:14,368: INFO/MainProcess] mingle: searching for neighbors
+[2016-05-25 01:31:15,378: INFO/MainProcess] mingle: all alone
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/djcelery/loaders.py:136: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+  warn('Using settings.DEBUG leads to a memory leak, never '
+
+[2016-05-25 01:31:15,393: WARNING/MainProcess] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/djcelery/loaders.py:136: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+  warn('Using settings.DEBUG leads to a memory leak, never '
+
+/home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/celery/fixups/django.py:265: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+  warnings.warn('Using settings.DEBUG leads to a memory leak, never '
+
+[2016-05-25 01:31:15,393: WARNING/MainProcess] /home/smitra/.virtualenvs/rnaseqenv34/lib/python3.4/site-packages/celery/fixups/django.py:265: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+  warnings.warn('Using settings.DEBUG leads to a memory leak, never '
+
+[2016-05-25 01:31:15,394: WARNING/MainProcess] celery@hinfo.rockefeller.edu ready.

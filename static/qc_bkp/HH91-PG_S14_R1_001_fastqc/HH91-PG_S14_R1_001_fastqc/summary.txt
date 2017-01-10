@@ -1,0 +1,12 @@
+PASS	Basic Statistics	HH91-PG_S14_R1_001.bam
+PASS	Per base sequence quality	HH91-PG_S14_R1_001.bam
+PASS	Per tile sequence quality	HH91-PG_S14_R1_001.bam
+PASS	Per sequence quality scores	HH91-PG_S14_R1_001.bam
+FAIL	Per base sequence content	HH91-PG_S14_R1_001.bam
+PASS	Per sequence GC content	HH91-PG_S14_R1_001.bam
+PASS	Per base N content	HH91-PG_S14_R1_001.bam
+WARN	Sequence Length Distribution	HH91-PG_S14_R1_001.bam
+PASS	Sequence Duplication Levels	HH91-PG_S14_R1_001.bam
+PASS	Overrepresented sequences	HH91-PG_S14_R1_001.bam
+PASS	Adapter Content	HH91-PG_S14_R1_001.bam
+FAIL	Kmer Content	HH91-PG_S14_R1_001.bam

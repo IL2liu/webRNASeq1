@@ -1,0 +1,12 @@
+PASS	Basic Statistics	FC50-PG_S6_R1_001.bam
+PASS	Per base sequence quality	FC50-PG_S6_R1_001.bam
+PASS	Per tile sequence quality	FC50-PG_S6_R1_001.bam
+PASS	Per sequence quality scores	FC50-PG_S6_R1_001.bam
+FAIL	Per base sequence content	FC50-PG_S6_R1_001.bam
+PASS	Per sequence GC content	FC50-PG_S6_R1_001.bam
+PASS	Per base N content	FC50-PG_S6_R1_001.bam
+WARN	Sequence Length Distribution	FC50-PG_S6_R1_001.bam
+PASS	Sequence Duplication Levels	FC50-PG_S6_R1_001.bam
+PASS	Overrepresented sequences	FC50-PG_S6_R1_001.bam
+PASS	Adapter Content	FC50-PG_S6_R1_001.bam
+FAIL	Kmer Content	FC50-PG_S6_R1_001.bam
